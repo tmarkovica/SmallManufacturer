@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/productsFragment">
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductsFragment"
+        android:label="ProductsFragment">
+        <action
+            android:id="@+id/to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment"
+        android:label="ContactsFragment">
+        <action
+            android:id="@+id/to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment"
+        android:label="OrdersFragment">
+        <action
+            android:id="@+id/to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/holderFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.holder.HolderFragment"
+        android:label="HolderFragment">
+        <action
+            android:id="@+id/to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
+</navigation>
