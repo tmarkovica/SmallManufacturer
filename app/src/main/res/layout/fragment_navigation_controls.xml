@@ -6,7 +6,6 @@
     >
 
     <com.google.android.material.tabs.TabLayout
-        android:background="#6A939C"
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

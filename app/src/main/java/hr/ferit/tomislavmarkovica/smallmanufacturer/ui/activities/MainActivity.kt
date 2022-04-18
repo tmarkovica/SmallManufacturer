@@ -1,13 +1,7 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.ui
+package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.activities
 
 import android.os.Bundle
-import android.util.Log
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.NavHost
-import androidx.navigation.findNavController
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 
 

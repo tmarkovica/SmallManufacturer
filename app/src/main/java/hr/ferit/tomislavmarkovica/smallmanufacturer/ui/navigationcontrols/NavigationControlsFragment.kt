@@ -1,7 +1,6 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,10 +27,6 @@ class NavigationControlsFragment : Fragment() {
         )
         listener = parentFragment as TabButtonClickListener
         setTabNavigation()
-
-        Log.d("TAG", "${this.activity}")
-
-
         return binding.root
     }
 
@@ -51,8 +46,4 @@ class NavigationControlsFragment : Fragment() {
             }
         })
     }
-    // https://material.io/components/tabs/android#fixed-tabs
-    // https://developer.android.com/jetpack/androidx/releases/navigation
-    // https://www.youtube.com/watch?v=4gUeyNkGE3g
-    // https://clopez27.com/blog/android-use-fragmentcontainerview-for-navigation   -> skroz na kraju!
 }

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentOrdersBinding
 
-class OrdersFragment: Fragment() {
+class OrdersFragment : Fragment() {
 
     private lateinit var binding: FragmentOrdersBinding
 

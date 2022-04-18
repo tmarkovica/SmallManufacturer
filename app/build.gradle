@@ -52,5 +52,25 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     //implementation "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
-//    apply plugin: "androidx.navigation.safeargs.kotlin"
+    // Room database:
+    def room_version = "2.4.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version" // novo
+    kapt "androidx.room:room-compiler:$room_version" // novo
+
+    // Koin:
+    def koin_version = "3.1.5"
+    implementation "io.insert-koin:koin-android:$koin_version"
+//    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+
+    // Scopes:
+    def lifecycle_scope_version = "2.4.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_scope_version" // LifecycleScope
+    def lifecycle_version = "2.5.0-alpha06"
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+
 }
