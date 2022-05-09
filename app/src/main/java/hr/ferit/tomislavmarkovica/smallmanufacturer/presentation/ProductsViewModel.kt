@@ -1,6 +1,7 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.presentation
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.productrepo.ProductRepository
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
@@ -9,7 +10,7 @@ class ProductsViewModel(
     private val productRepository: ProductRepository
 ) : ViewModel() {
 
-    var products = productRepository.getAllProducts()
+    var products: LiveData<List<Product>> = productRepository.getAllProducts()
 
     fun delete(product: Product) {
         //productRepository.delete(product)

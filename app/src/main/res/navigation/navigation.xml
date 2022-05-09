@@ -51,5 +51,16 @@
         <action
             android:id="@+id/to_ordersFragment"
             app:destination="@id/ordersFragment" />
+        <action
+            android:id="@+id/action_holderFragment_to_productCreationFragment"
+            app:destination="@id/productCreationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productCreationFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.productcreation.ProductCreationFragment"
+        android:label="ProductCreationFragment" >
+        <action
+            android:id="@+id/action_productCreationFragment_to_holderFragment"
+            app:destination="@id/holderFragment" />
     </fragment>
 </navigation>

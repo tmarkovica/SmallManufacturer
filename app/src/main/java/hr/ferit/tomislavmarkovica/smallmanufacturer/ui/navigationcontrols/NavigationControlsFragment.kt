@@ -1,6 +1,7 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class NavigationControlsFragment : Fragment() {
             container,
             false
         )
+        Log.d("TAG", parentFragment.toString());
         listener = parentFragment as TabButtonClickListener
         setTabNavigation()
         return binding.root
