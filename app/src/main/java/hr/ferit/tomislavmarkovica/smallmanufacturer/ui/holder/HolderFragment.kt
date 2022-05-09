@@ -1,19 +1,19 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.holder
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.ActionOnlyNavDirections
-import androidx.navigation.NavDirections
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentHolderBinding
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols.TabButtonClickListener
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.FabEventListener
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment
+
 
 class HolderFragment : Fragment(), TabButtonClickListener, FabEventListener {
 
@@ -33,40 +33,26 @@ class HolderFragment : Fragment(), TabButtonClickListener, FabEventListener {
     }
 
     override fun onTabButtonClick(position: Int) {
-        Log.d("TAG", "HolderFragment: Tab selected + $position")
-
-        val action: NavDirections = when (position) {
+        val fragment: Fragment = when (position) {
             0 -> {
-                ActionOnlyNavDirections(R.id.to_productsFragment)
+                ProductListTabFragment()
             }
             1 -> {
-                ActionOnlyNavDirections(R.id.to_contactsFragment)
+                OrdersFragment()
             }
             else -> {
-                ActionOnlyNavDirections(R.id.to_ordersFragment)
+                ContactsFragment()
             }
         }
-//        Log.d("TAG", "1. " + findNavController().toString())
-//        Log.d("TAG", "1. " + childFragmentManager.fragments[0].toString())
-        childFragmentManager.fragments[0].findNavController().navigate(action)
+        val fragmentManager = childFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, fragment)
+        fragmentTransaction.commit()
     }
 
     override fun onFabClick() {
-        Log.d("TAG", "onFabClick()")
-        val action: NavDirections = ActionOnlyNavDirections(R.id.action_holderFragment_to_productCreationFragment)
-        Log.d("TAG", action.toString())
-        Log.d("TAG", childFragmentManager.fragments[0].toString())
-        Log.d("TAG", parentFragmentManager.fragments.toString())
-        Log.d("TAG", parentFragmentManager.fragments[0].toString())
-
+        //val action: NavDirections = ActionOnlyNavDirections(R.id.action_holderFragment_to_productCreationFragment)
         //parentFragmentManager.fragments[0].findNavController().navigate(action)
-
-
-//        Log.d("TAG", "parentFragment " + parentFragment.toString())
-        //this.findNavController().navigate(action)
-    //findNavController().navigate(action)
-
-//        val action: NavDirections = ActionOnlyNavDirections(R.id.action_holderFragment_to_productCreationFragment)
-//        parentFragment?.findNavController()?.navigate(action)
+        Navigation.findNavController(binding.root).navigate(R.id.action_holderFragment_to_productCreationFragment)
     }
 }

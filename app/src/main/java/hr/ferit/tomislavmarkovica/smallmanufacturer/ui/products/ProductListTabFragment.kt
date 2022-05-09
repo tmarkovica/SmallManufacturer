@@ -16,7 +16,6 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
     private lateinit var binding: FragmentProductsBinding
     private val viewModel: ProductsViewModel by viewModel()
     private lateinit var adapter: ProductAdapter
-
     private lateinit var listener: FabEventListener
 
     override fun onCreateView(
@@ -32,27 +31,11 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
         bindView()
         setupRecyclerView()
         binding.floatingActionButtonAddProduct.setOnClickListener { showProductCreationFragment() }
-        Log.d("TAG", parentFragment?.parentFragment.toString());
-        listener = parentFragment?.parentFragment as FabEventListener
+        listener = parentFragment as FabEventListener
         return binding.root
     }
 
     private fun showProductCreationFragment() {
-//        val action = HolderFragmentDirections.actionHolderFragmentToProductCreationFragment()
-//        findNavController().navigate(action)
-
-//        try {
-//            val action: NavDirections = ActionOnlyNavDirections(R.id.action_holderFragment_to_productCreationFragment)
-//            //childFragmentManager.fragments[0].findNavController().navigate(action)
-//            Log.d("TAG", parentFragmentManager.fragments[0].toString())
-//            Log.d("TAG", childFragmentManager.fragments[0].toString())
-//            Log.d("TAG", fragmentScope().toString())
-//        }
-//        catch (e: Error) {
-//            Log.d("TAG", e.message.toString());
-//        }
-
-//        if (listener != null)
         listener.onFabClick()
     }
 
@@ -91,6 +74,4 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
     private fun updateData() {
         viewModel.products.value?.let { adapter.setTasks(it) }
     }
-
-
 }

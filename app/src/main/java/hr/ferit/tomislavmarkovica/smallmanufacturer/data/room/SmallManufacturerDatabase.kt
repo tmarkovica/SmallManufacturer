@@ -5,16 +5,18 @@ import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
 @Database(
-    entities = [Product::class],
-    version = 1,
+    entities = [Product::class, Feature::class],
+    version = 2,
     exportSchema = false
 )
 abstract class SmallManufacturerDatabase : RoomDatabase() {
 
     abstract fun getProductDao(): ProductDao
+    abstract fun getFeatureDao(): FeatureDao
 
     companion object {
 
@@ -24,7 +26,6 @@ abstract class SmallManufacturerDatabase : RoomDatabase() {
         private var INSTANCE: SmallManufacturerDatabase? = null
 
         fun getDatabase(context: Context): SmallManufacturerDatabase {
-            Log.d("TAG", "getDatabase method")
             if (INSTANCE == null) {
                 synchronized(this) {
                     INSTANCE = buildDatabase(context)
@@ -39,13 +40,13 @@ abstract class SmallManufacturerDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): SmallManufacturerDatabase {
-            Log.d("TAG", "buildDatabase method")
             return Room.databaseBuilder(
                 context.applicationContext,
                 SmallManufacturerDatabase::class.java,
                 databaseName
             )
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration() // destroys database when upgrading version
                 .build()
         }
     }

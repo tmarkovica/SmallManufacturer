@@ -22,30 +22,26 @@ class ProductsViewModel(
         return product
     }
 
-    fun saveSomething() {
-        val product = Product(0, "proizvod1", "opis proizvoda 1")
+    fun saveProduct(product: Product) {
         productRepository.save(product)
-
-        Log.d("TAG", products.value.toString())
-        Log.d("TAG", products.value?.size.toString())
     }
-
-    fun getAllProductsInString(): String {
-        useLiveData()
-        return "called"
-    }
-
-    private fun useLiveData() {
-        val str = StringBuilder()
-
-        val allProducts: List<Product>? = products.value
-
-        if (allProducts != null) {
-            for (p in allProducts) {
-                str.append(p.name, "\n")
-            }
-        }
-
-        Log.d("TAG", "useLiveData: " + str.toString())
-    }
+//
+//    fun getAllProductsInString(): String {
+//        useLiveData()
+//        return "called"
+//    }
+//
+//    private fun useLiveData() {
+//        val str = StringBuilder()
+//
+//        val allProducts: List<Product>? = products.value
+//
+//        if (allProducts != null) {
+//            for (p in allProducts) {
+//                str.append(p.name, "\n")
+//            }
+//        }
+//
+//        Log.d("TAG", "useLiveData: " + str.toString())
+//    }
 }

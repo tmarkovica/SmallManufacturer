@@ -9,29 +9,35 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ProductsViewMod
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import android.util.Log
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featurerepo.FeatureRepository
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featurerepo.FeatureRepositoryImplementation
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.FeatureDao
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.FeaturesViewModel
 
 val databaseModule = module {
-    Log.d("TAG", "databaseModule")
     fun provideDatabase(application: Application): SmallManufacturerDatabase {
-        Log.d("TAG", "provideDatabase")
         return SmallManufacturerDatabase.getDatabase(application)
     }
     fun provideProductDao(database: SmallManufacturerDatabase): ProductDao {
         return database.getProductDao()
     }
+    fun provideFeatureDao(database: SmallManufacturerDatabase): FeatureDao {
+        return database.getFeatureDao()
+    }
     single<SmallManufacturerDatabase> { provideDatabase(get()) }
     single<ProductDao> { provideProductDao(get()) }
+    single<FeatureDao> { provideFeatureDao(get()) }
 }
 
 
 val repositoryModule = module {
-    Log.d("TAG", "repositoryModule")
     single<ProductRepository> { ProductRepositoryImplementation(get()) }
+    single<FeatureRepository> { FeatureRepositoryImplementation(get()) }
 }
 
 val viewModelModule = module {
-    Log.d("TAG", "viewModelModule")
     viewModel { ProductsViewModel(get()) }
+    viewModel { FeaturesViewModel(get()) }
 }
 
 //val sharedPrefers = module {

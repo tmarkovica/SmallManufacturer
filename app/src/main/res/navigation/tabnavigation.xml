@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tabnavigation"
+    app:startDestination="@id/productListTabFragment">
+    <fragment
+        android:id="@+id/productListTabFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+        <action
+            android:id="@+id/to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment"
+        android:label="OrdersFragment" >
+        <action
+            android:id="@+id/to_productListTabFragment"
+            app:destination="@id/productListTabFragment" />
+        <action
+            android:id="@+id/to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment"
+        android:label="ContactsFragment" >
+        <action
+            android:id="@+id/to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+        <action
+            android:id="@+id/to_productListTabFragment"
+            app:destination="@id/productListTabFragment" />
+    </fragment>
+</navigation>

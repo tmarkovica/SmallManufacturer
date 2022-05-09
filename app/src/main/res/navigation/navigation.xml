@@ -1,66 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/productsFragment">
-    <fragment
-        android:id="@+id/productsFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment"
-        android:label="ProductsFragment">
-        <action
-            android:id="@+id/to_contactsFragment"
-            app:destination="@id/contactsFragment" />
-        <action
-            android:id="@+id/to_ordersFragment"
-            app:destination="@id/ordersFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/contactsFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment"
-        android:label="ContactsFragment">
-        <action
-            android:id="@+id/to_productsFragment"
-            app:destination="@id/productsFragment" />
-        <action
-            android:id="@+id/to_ordersFragment"
-            app:destination="@id/ordersFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/ordersFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment"
-        android:label="OrdersFragment">
-        <action
-            android:id="@+id/to_productsFragment"
-            app:destination="@id/productsFragment" />
-        <action
-            android:id="@+id/to_contactsFragment"
-            app:destination="@id/contactsFragment" />
-    </fragment>
+    app:startDestination="@id/holderFragment">
 
 
-    <fragment
-        android:id="@+id/holderFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.holder.HolderFragment"
-        android:label="HolderFragment">
-        <action
-            android:id="@+id/to_productsFragment"
-            app:destination="@id/productsFragment" />
-        <action
-            android:id="@+id/to_contactsFragment"
-            app:destination="@id/contactsFragment" />
-        <action
-            android:id="@+id/to_ordersFragment"
-            app:destination="@id/ordersFragment" />
-        <action
-            android:id="@+id/action_holderFragment_to_productCreationFragment"
-            app:destination="@id/productCreationFragment" />
-    </fragment>
     <fragment
         android:id="@+id/productCreationFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.productcreation.ProductCreationFragment"
-        android:label="ProductCreationFragment" >
+        android:label="fragment_product_creation"
+        tools:layout="@layout/fragment_product_creation" >
         <action
             android:id="@+id/action_productCreationFragment_to_holderFragment"
             app:destination="@id/holderFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/holderFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.holder.HolderFragment"
+        android:label="fragment_holder"
+        tools:layout="@layout/fragment_holder" >
+        <action
+            android:id="@+id/action_holderFragment_to_productCreationFragment"
+            app:destination="@id/productCreationFragment" />
+        <action
+            android:id="@+id/to_productListTabFragment2"
+            app:destination="@id/productListTabFragment2" />
+        <action
+            android:id="@+id/to_ordersFragment2"
+            app:destination="@id/ordersFragment2" />
+        <action
+            android:id="@+id/to_contactsFragment2"
+            app:destination="@id/contactsFragment2" />
+    </fragment>
+
+    <include app:graph="@navigation/tabnavigation"/>
+    <fragment
+        android:id="@+id/productListTabFragment2"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" />
+    <fragment
+        android:id="@+id/ordersFragment2"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment"
+        android:label="OrdersFragment" />
+    <fragment
+        android:id="@+id/contactsFragment2"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment"
+        android:label="ContactsFragment" />
 </navigation>

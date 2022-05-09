@@ -1,7 +1,6 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,14 +25,13 @@ class NavigationControlsFragment : Fragment() {
             container,
             false
         )
-        Log.d("TAG", parentFragment.toString());
         listener = parentFragment as TabButtonClickListener
         setTabNavigation()
         return binding.root
     }
 
     private fun setTabNavigation() {
-        var tabLayoutMediator = binding.tabLayout
+        val tabLayoutMediator = binding.tabLayout
         tabLayoutMediator.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.position?.let { listener.onTabButtonClick(it) }
