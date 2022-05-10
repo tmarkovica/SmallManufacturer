@@ -1,0 +1,59 @@
+ext.deps = [:]
+def versions = [:]
+versions.nav_version = "2.4.2"
+versions.room_version = "2.4.2"
+versions.koin_version = "3.1.5"
+versions.lifecycle_scope_version = "2.4.1"
+versions.lifecycle_version = "2.5.0-alpha06"
+
+versions.core_ktx_version = "1.7.0"
+versions.appcompat_version = '1.4.1'
+versions.material_version = '1.5.0'
+versions.constraintlayout_version = '2.1.3'
+versions.junit_version = '4.13.2'
+versions.ext_junit_version = '1.1.3'
+versions.espresso_core_version = '3.4.0'
+
+ext.versions = versions
+
+
+
+// Navigation:
+def navigation = [:]
+navigation.navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions.nav_version"
+navigation.navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.nav_version"
+deps.navigation = navigation
+
+// Room database:
+def room = [:]
+room.room_runtime = "androidx.room:room-runtime:$versions.room_version"
+room.room_compiler = "androidx.room:room-compiler:$versions.room_version"
+deps.room = room
+
+// Koin:
+def koin = [:]
+koin.insert_koin = "io.insert-koin:koin-android:$versions.koin_version"
+deps.koin = koin
+
+// Scopes:
+def lifecycle_scope = [:]
+lifecycle_scope.lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle_scope_version"
+deps.lifecycle_scope = lifecycle_scope
+
+def lifecycle = [:]
+// ViewModel
+lifecycle.lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle_version"
+// LiveData
+lifecycle.lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle_version"
+deps.lifecycle = lifecycle
+
+
+def default_deps = [:]
+default_deps.core_ktx = "androidx.core:core-ktx:$versions.core_ktx_version"
+default_deps.appcompat = "androidx.appcompat:appcompat:$versions.appcompat_version"
+default_deps.material = "com.google.android.material:material:$versions.material_version"
+default_deps.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintlayout_version"
+default_deps.junit = "junit:junit:$versions.junit_version"
+default_deps.ext_junit = "androidx.test.ext:junit:$versions.ext_junit_version"
+default_deps.espresso_core_version = "androidx.test.espresso:espresso-core:$versions.espresso_core_version"
+deps.default_deps = default_deps

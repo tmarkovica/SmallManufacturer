@@ -1,0 +1,30 @@
+//dependencies {
+//    implementation deps.default_deps.core_ktx
+//    implementation deps.default_deps.appcompat
+//    implementation deps.default_deps.material
+//    implementation deps.default_deps.constraintlayout
+//    testImplementation deps.default_deps.junit
+//    androidTestImplementation deps.default_deps.ext_junit
+//    androidTestImplementation deps.default_deps.espresso_core_version
+//
+//    // Navigation:
+//    implementation deps.navigation.navigation_fragment_ktx
+//    implementation deps.navigation.navigation_ui_ktx
+//
+//    // Room database:
+//    implementation deps.room.room_runtime
+//    annotationProcessor deps.room.room_compiler
+//    kapt deps.room.room_compiler
+//
+//    // Koin:
+//    implementation deps.koin.insert_koin
+//
+//    // Scopes:
+//    implementation deps.lifecycle_scope.lifecycle_runtime_ktx
+//
+//    // ViewModel
+//    implementation deps.lifecycle.lifecycle_viewmodel_ktx
+//
+//    // LiveData
+//    implementation deps.lifecycle.lifecycle_livedata_ktx
+//}

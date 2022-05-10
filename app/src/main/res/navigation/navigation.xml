@@ -32,9 +32,12 @@
         <action
             android:id="@+id/to_contactsFragment2"
             app:destination="@id/contactsFragment2" />
+        <action
+            android:id="@+id/action_holderFragment_to_productFeaturesEditFragment"
+            app:destination="@id/productFeaturesEditFragment" />
     </fragment>
 
-    <include app:graph="@navigation/tabnavigation"/>
+    include app:graph="@navigation/tabnavigation"/>
     <fragment
         android:id="@+id/productListTabFragment2"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment"
@@ -48,4 +51,12 @@
         android:id="@+id/contactsFragment2"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment"
         android:label="ContactsFragment" />
+    <fragment
+        android:id="@+id/productFeaturesEditFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.productfeaturesedit.ProductFeaturesEditFragment"
+        android:label="ProductFeaturesEditFragment" >
+        <action
+            android:id="@+id/action_productFeaturesEditFragment_to_holderFragment"
+            app:destination="@id/holderFragment" />
+    </fragment>
 </navigation>

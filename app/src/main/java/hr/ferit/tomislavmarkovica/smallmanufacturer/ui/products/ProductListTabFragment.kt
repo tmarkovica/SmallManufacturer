@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentProductsBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ProductsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,7 +18,6 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
     private lateinit var binding: FragmentProductsBinding
     private val viewModel: ProductsViewModel by viewModel()
     private lateinit var adapter: ProductAdapter
-    private lateinit var listener: FabEventListener
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +32,11 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
         bindView()
         setupRecyclerView()
         binding.floatingActionButtonAddProduct.setOnClickListener { showProductCreationFragment() }
-        listener = parentFragment as FabEventListener
         return binding.root
     }
 
     private fun showProductCreationFragment() {
-        listener.onFabClick()
+        Navigation.findNavController(binding.root).navigate(R.id.action_holderFragment_to_productCreationFragment)
     }
 
     private fun bindView() {
@@ -58,9 +58,10 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
         binding.recyclerViewProducts.adapter = adapter
     }
 
-//    override fun onProductLongPress(id: Long?) {
-//        return true
-//    }
+    override fun onProductLongPress(id: Long?) {
+        Log.d("TAG", "long press working - id = $id")
+        Navigation.findNavController(binding.root).navigate(R.id.action_holderFragment_to_productFeaturesEditFragment)
+    }
 
     override fun onProductClick(id: Long?) {
         Log.d("TAG", "ProductID pressed: $id")

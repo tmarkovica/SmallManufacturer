@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.*
+import androidx.recyclerview.widget.RecyclerView.Adapter
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.ItemFeatureBinding
-import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.ItemProductBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
-import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
 class FeatureAdapter : Adapter<FeatureViewHolder>() {
 
@@ -37,12 +35,4 @@ class FeatureAdapter : Adapter<FeatureViewHolder>() {
     }
 
     override fun getItemCount(): Int = features.count()
-}
-
-class FeatureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    fun bind(feature: Feature) {
-        val binding = ItemFeatureBinding.bind(itemView)
-        binding.textViewFeature.text = feature.feature
-    }
 }

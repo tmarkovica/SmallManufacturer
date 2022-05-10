@@ -5,17 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentHolderBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols.TabButtonClickListener
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.FabEventListener
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment
 
 
-class HolderFragment : Fragment(), TabButtonClickListener, FabEventListener {
+class HolderFragment : Fragment(), TabButtonClickListener {
 
     private lateinit var binding: FragmentHolderBinding
 
@@ -48,11 +46,5 @@ class HolderFragment : Fragment(), TabButtonClickListener, FabEventListener {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
-    }
-
-    override fun onFabClick() {
-        //val action: NavDirections = ActionOnlyNavDirections(R.id.action_holderFragment_to_productCreationFragment)
-        //parentFragmentManager.fragments[0].findNavController().navigate(action)
-        Navigation.findNavController(binding.root).navigate(R.id.action_holderFragment_to_productCreationFragment)
     }
 }

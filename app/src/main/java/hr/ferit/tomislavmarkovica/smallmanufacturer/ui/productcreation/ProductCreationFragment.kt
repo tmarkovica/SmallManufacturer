@@ -11,13 +11,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentProductCreationBinding
-import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentProductsBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.FeaturesViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ProductsViewModel
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.OnProductEventListener
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductCreationFragment: Fragment(), FeatureEventListener {
@@ -44,22 +41,28 @@ class ProductCreationFragment: Fragment(), FeatureEventListener {
         return binding.root
     }
 
-    private fun saveProduct() {
+    private fun getProductFromTextInput() : Product? {
         val name = binding.editTextProductName.text.toString()
         val description = binding.editTextProductDescription.text.toString()
+        return if (name == "" || description == "") null
+            else
+                Product(0, name, description)
+    }
 
-        if (name == "" || description == "")
-            return;
+    private fun getFeatureFromTextInput() : Feature? {
+        val feature = binding.editTextProductFeature.text.toString()
+        return if (feature == "") null
+            else return Feature(0, feature)
+    }
 
-        var product = Product(0, name, description)
-        viewModelProducts.saveProduct(product)
+    private fun saveProduct() {
+        viewModelProducts.saveProduct(getProductFromTextInput() ?: return)
         Toast.makeText(context, "New product added", Toast.LENGTH_SHORT).show()
         Navigation.findNavController(binding.root).navigate(R.id.action_productCreationFragment_to_holderFragment)
     }
 
     private fun addFeature() {
-        val feature = Feature(0, binding.editTextProductFeature.text.toString())
-        viewModelFeatures.saveFeature(0, feature)
+        viewModelFeatures.saveFeature(getFeatureFromTextInput() ?: return)
     }
 
     override fun onFeatureClick(feature: Feature) {
@@ -78,7 +81,6 @@ class ProductCreationFragment: Fragment(), FeatureEventListener {
     }
 
     private fun updateData() {
-        //viewModel.products.value?.let { adapter.setFeatures(it) }
         viewModelFeatures.features.value?.let { adapter.setFeatures(it) }
     }
 

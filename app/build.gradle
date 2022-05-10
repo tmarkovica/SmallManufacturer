@@ -37,40 +37,71 @@ android {
 }
 
 dependencies {
-
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation deps.default_deps.core_ktx
+    implementation deps.default_deps.appcompat
+    implementation deps.default_deps.material
+    implementation deps.default_deps.constraintlayout
+    testImplementation deps.default_deps.junit
+    androidTestImplementation deps.default_deps.ext_junit
+    androidTestImplementation deps.default_deps.espresso_core_version
 
     // Navigation:
-    def nav_version = "2.4.2"
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    //implementation "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    implementation deps.navigation.navigation_fragment_ktx
+    implementation deps.navigation.navigation_ui_ktx
+
+//    implementation "androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2" // novo
 
     // Room database:
-    def room_version = "2.4.2"
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version" // novo
-    kapt "androidx.room:room-compiler:$room_version" // novo
+    implementation deps.room.room_runtime
+    annotationProcessor deps.room.room_compiler
+    kapt deps.room.room_compiler
 
     // Koin:
-    def koin_version = "3.1.5"
-    implementation "io.insert-koin:koin-android:$koin_version"
-//    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+    implementation deps.koin.insert_koin
 
     // Scopes:
-    def lifecycle_scope_version = "2.4.1"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_scope_version" // LifecycleScope
-    def lifecycle_version = "2.5.0-alpha06"
+    implementation deps.lifecycle_scope.lifecycle_runtime_ktx
+
     // ViewModel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation deps.lifecycle.lifecycle_viewmodel_ktx
+
     // LiveData
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation deps.lifecycle.lifecycle_livedata_ktx
 
 
+
+//    implementation 'androidx.core:core-ktx:1.7.0'
+//    implementation 'androidx.appcompat:appcompat:1.4.1'
+//    implementation 'com.google.android.material:material:1.5.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+//    testImplementation 'junit:junit:4.13.2'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+//    // Navigation:
+//    def nav_version = "2.4.2"
+//    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+//    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+//
+//    // Room database:
+//    def room_version = "2.4.2"
+//    implementation "androidx.room:room-runtime:$room_version"
+//    annotationProcessor "androidx.room:room-compiler:$room_version"
+//    kapt "androidx.room:room-compiler:$room_version"
+//
+//    // Koin:
+//    def koin_version = "3.1.5"
+//    implementation "io.insert-koin:koin-android:$koin_version"
+////    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+//
+//    // Scopes:
+//    def lifecycle_scope_version = "2.4.1"
+//    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_scope_version" // LifecycleScope
+//    def lifecycle_version = "2.5.0-alpha06"
+//
+//    // ViewModel
+//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+//
+//    // LiveData
+//    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 }

@@ -16,7 +16,7 @@ class ProductsViewModel(
         //productRepository.delete(product)
     }
 
-    fun getTaskById(id: Long?): Product? {
+    fun getProductById(id: Long?): Product? {
         var product: Product? = null
         id?.let { product = productRepository.getProductById(id) }
         return product

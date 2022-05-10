@@ -30,18 +30,12 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
         holder.bind(product)
         listener?.let {
             holder.itemView.setOnClickListener { listener?.onProductClick(product.id) }
-            //holder.itemView.setOnLongClickListener { listener?.onProductLongPress(product.id) }
+            holder.itemView.setOnLongClickListener {
+                listener?.onProductLongPress(product.id)
+                return@setOnLongClickListener true
+            }
         }
     }
 
     override fun getItemCount(): Int = products.count()
-}
-
-class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    fun bind(product: Product) {
-        val binding = ItemProductBinding.bind(itemView)
-        binding.textViewProductName.text = product.name
-        binding.textViewProductDescription.text = product.description
-    }
 }

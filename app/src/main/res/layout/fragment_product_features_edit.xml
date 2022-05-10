@@ -18,8 +18,8 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayer_productName"
+    <TextView
+        android:id="@+id/textView_productName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -28,16 +28,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView_productImage"
-        >
-        <EditText
-            android:id="@+id/editText_productName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Product name" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textStyle="bold"
+        android:textSize="22dp"
+        />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayer_productDescription"
+    <TextView
+        android:id="@+id/textView_productDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -45,14 +41,8 @@
         android:layout_marginRight="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayer_productName"
-        >
-        <EditText
-            android:id="@+id/editText_productDescription"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Description" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@id/textView_productName"
+        />
 
     <TextView
         android:id="@+id/textView_features"
@@ -62,7 +52,7 @@
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayer_productDescription"
+        app:layout_constraintTop_toBottomOf="@id/textView_productDescription"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -111,15 +101,15 @@
         app:layout_constraintEnd_toEndOf="@id/textInputLayer_productFeature"
         />
 
-    <Button
-        android:id="@+id/button_saveProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayer_productFeature"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/button_saveProduct"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Save"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/textInputLayer_productFeature"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

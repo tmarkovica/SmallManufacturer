@@ -10,8 +10,8 @@ class FeaturesViewModel(
     private val featureRepository: FeatureRepository
 ) : ViewModel() {
     var features: LiveData<List<Feature>> = featureRepository.getAllFeatures()
-
-    fun saveFeature(id: Long?, feature: Feature) {
+    
+    fun saveFeature(feature: Feature) {
         featureRepository.save(feature)
         Log.d("TAG", feature.toString())
     }
