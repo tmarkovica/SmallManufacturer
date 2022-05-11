@@ -1,12 +1,14 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.product.creation
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.content.ActivityNotFoundException
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,12 +45,47 @@ class ProductCreationFragment: Fragment() {
             container,
             false
         )
+        getDefaultProductImageFromResources()
+        setImageToImageView()
         binding.buttonSaveProduct.setOnClickListener { saveProduct() }
         binding.buttonAddFeature.setOnClickListener { addFeature() }
         binding.imageViewProductImage.setOnClickListener { addProductPhoto() }
+        binding.imageViewProductImage.setOnLongClickListener { removePhoto() }
         bindView()
         setupRecyclerView()
         return binding.root
+    }
+
+    private fun getDefaultProductImageFromResources() {
+        imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.factory_256) as Bitmap
+    }
+
+    private fun setImageToImageView() {
+        binding.imageViewProductImage.setImageBitmap(imageBitmap)
+    }
+
+    private fun removePhoto(): Boolean {
+        val alertDialog: AlertDialog? = activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setPositiveButton("Yes",
+                    DialogInterface.OnClickListener { dialog, id ->
+                        // User clicked OK button
+                        getDefaultProductImageFromResources()
+                        setImageToImageView()
+                    })
+                setNegativeButton("No",
+                    DialogInterface.OnClickListener { dialog, id ->
+                        // User cancelled the dialog
+                    })
+                setTitle("Do you want to delete image")
+            }
+            // Set other dialog properties
+            // Create the AlertDialog
+            builder.create()
+        }
+        alertDialog?.show()
+        return true
     }
 
     private fun updateData() {
@@ -60,10 +97,7 @@ class ProductCreationFragment: Fragment() {
         val description = binding.editTextProductDescription.text.toString()
         return if (name == "" || description == "") null
             else
-            {
                 Product(0, name, description, imageBitmap)
-                //Product(0, name, description, BitmapFactory.decodeResource(resources, imageBitmap) as Bitmap)
-            }
     }
 
     private fun getFeatureFromTextInput() : Feature? {
@@ -119,7 +153,7 @@ class ProductCreationFragment: Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             imageBitmap = data?.extras?.get("data") as Bitmap
-            binding.imageViewProductImage.setImageBitmap(imageBitmap)
+            setImageToImageView()
         }
     }
 }

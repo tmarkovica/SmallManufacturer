@@ -11,5 +11,6 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ItemProductBinding.bind(itemView)
         binding.textViewProductName.text = product.name
         binding.textViewProductDescription.text = product.description
+        binding.imageViewProductImage.setImageBitmap(product.photo)
     }
 }

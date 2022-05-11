@@ -1,6 +1,5 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.productrepo.ProductRepository
@@ -25,23 +24,4 @@ class ProductsViewModel(
     fun saveProduct(product: Product) {
         productRepository.save(product)
     }
-//
-//    fun getAllProductsInString(): String {
-//        useLiveData()
-//        return "called"
-//    }
-//
-//    private fun useLiveData() {
-//        val str = StringBuilder()
-//
-//        val allProducts: List<Product>? = products.value
-//
-//        if (allProducts != null) {
-//            for (p in allProducts) {
-//                str.append(p.name, "\n")
-//            }
-//        }
-//
-//        Log.d("TAG", "useLiveData: " + str.toString())
-//    }
 }
