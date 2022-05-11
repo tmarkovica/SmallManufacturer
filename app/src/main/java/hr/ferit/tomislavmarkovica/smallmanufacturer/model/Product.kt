@@ -1,10 +1,14 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.model
 
+import android.graphics.Bitmap
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.converters.PhotoConverters
 
 @Entity(tableName = "products")
+@TypeConverters(PhotoConverters::class)
 data class Product(
 
     @PrimaryKey(autoGenerate = true)
@@ -14,10 +18,9 @@ data class Product(
     val name: String,
 
     @ColumnInfo(name = "description")
-    val description: String
+    val description: String,
 
-    // https://www.youtube.com/watch?v=adGU0A80EJ0
-//    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-//    val image: byte[]
-    ) {
-}
+    @ColumnInfo(name = "photo")
+    val photo: Bitmap
+
+    )

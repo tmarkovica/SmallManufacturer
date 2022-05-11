@@ -1,18 +1,16 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.productcreation
+package hr.ferit.tomislavmarkovica.smallmanufacturer.product.featureadapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
-import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.ItemFeatureBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
+import hr.ferit.tomislavmarkovica.smallmanufacturer.product.creation.FeatureEventListener
 
 class FeatureAdapter : Adapter<FeatureViewHolder>() {
 
     private val features = mutableListOf<Feature>()
-    var listener: FeatureEventListener? = null
+//    var listener: FeatureEventListener? = null
 
     fun setFeatures(features: List<Feature>) {
         this.features.clear()
@@ -29,9 +27,9 @@ class FeatureAdapter : Adapter<FeatureViewHolder>() {
     override fun onBindViewHolder(holder: FeatureViewHolder, position: Int) {
         val feature = features[position]
         holder.bind(feature)
-        listener?.let {
-            holder.itemView.setOnClickListener { listener?.onFeatureClick(feature) }
-        }
+//        listener?.let {
+//            holder.itemView.setOnClickListener { listener?.onFeatureClick(feature) }
+//        }
     }
 
     override fun getItemCount(): Int = features.count()

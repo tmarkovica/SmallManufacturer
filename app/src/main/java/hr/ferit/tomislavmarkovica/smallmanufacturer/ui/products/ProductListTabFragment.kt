@@ -19,6 +19,8 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
     private val viewModel: ProductsViewModel by viewModel()
     private lateinit var adapter: ProductAdapter
 
+    private lateinit var listener: ProductLongPressListener
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,6 +31,7 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
             container,
             false
         )
+        listener = parentFragment as ProductLongPressListener
         bindView()
         setupRecyclerView()
         binding.floatingActionButtonAddProduct.setOnClickListener { showProductCreationFragment() }
@@ -59,12 +62,11 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
     }
 
     override fun onProductLongPress(id: Long?) {
-        Log.d("TAG", "long press working - id = $id")
-        Navigation.findNavController(binding.root).navigate(R.id.action_holderFragment_to_productFeaturesEditFragment)
+        listener.onProductLongPress(id)
     }
 
     override fun onProductClick(id: Long?) {
-        Log.d("TAG", "ProductID pressed: $id")
+        Log.d("TAG", "Product pressed id = $id")
     }
 
     override fun onResume() {

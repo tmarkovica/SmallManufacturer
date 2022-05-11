@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.productcreation.ProductCreationFragment"
+    tools:context=".product.creation.ProductCreationFragment"
     >
 
     <ImageView
@@ -84,7 +84,8 @@
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView_features">
+        app:layout_constraintTop_toBottomOf="@id/recyclerView_features"
+        app:layout_constraintBottom_toBottomOf="parent">
         <EditText
             android:id="@+id/editText_productFeature"
             android:layout_width="match_parent"

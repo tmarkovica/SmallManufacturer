@@ -2,7 +2,10 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs.kotlin'
+
+    //id 'org.jetbrains.kotlin.android'  // novo
+    id 'androidx.navigation.safeargs.kotlin' // novo
+//    id "androidx.navigation.safeargs"
 }
 
 android {
@@ -49,7 +52,7 @@ dependencies {
     implementation deps.navigation.navigation_fragment_ktx
     implementation deps.navigation.navigation_ui_ktx
 
-//    implementation "androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2" // novo
+    //implementation "androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2" // novo
 
     // Room database:
     implementation deps.room.room_runtime
@@ -67,7 +70,6 @@ dependencies {
 
     // LiveData
     implementation deps.lifecycle.lifecycle_livedata_ktx
-
 
 
 //    implementation 'androidx.core:core-ktx:1.7.0'

@@ -5,14 +5,17 @@ import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.converters.PhotoConverters
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
 @Database(
     entities = [Product::class, Feature::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
+@TypeConverters(PhotoConverters::class)
 abstract class SmallManufacturerDatabase : RoomDatabase() {
 
     abstract fun getProductDao(): ProductDao
