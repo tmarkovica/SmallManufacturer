@@ -7,7 +7,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 @Dao
 interface FeatureDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(feature: Feature)
+    fun save(feature: Feature): Long
 
     @Delete
     fun delete(feature: Feature)

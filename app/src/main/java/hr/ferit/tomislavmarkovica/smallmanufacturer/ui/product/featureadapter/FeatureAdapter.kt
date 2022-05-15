@@ -1,11 +1,10 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.product.featureadapter
+package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.featureadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
-import hr.ferit.tomislavmarkovica.smallmanufacturer.product.creation.FeatureEventListener
 
 class FeatureAdapter : Adapter<FeatureViewHolder>() {
 

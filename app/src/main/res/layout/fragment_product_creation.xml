@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".product.creation.ProductCreationFragment"
+    tools:context=".ui.product.creation.ProductCreationFragment"
     >
 
     <ImageView
@@ -12,12 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="@dimen/imageView_productImage_margin"
+        android:src="@drawable/factory_256"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
-
-<!--    android:src="@drawable/factory_256"-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayer_productName"
@@ -84,6 +83,7 @@
         app:layout_constraintBottom_toTopOf="@id/textInputLayer_productFeature"
         app:layout_constrainedHeight="true"
         app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0.0"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -95,7 +95,8 @@
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView_features">
+        app:layout_constraintTop_toBottomOf="@id/recyclerView_features"
+        app:layout_constraintBottom_toTopOf="@id/button_saveProduct">
         <EditText
             android:id="@+id/editText_productFeature"
             android:layout_width="match_parent"

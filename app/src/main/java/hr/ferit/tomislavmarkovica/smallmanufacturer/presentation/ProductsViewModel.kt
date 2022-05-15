@@ -21,7 +21,7 @@ class ProductsViewModel(
         return product
     }
 
-    fun saveProduct(product: Product) {
-        productRepository.save(product)
+    fun saveProduct(product: Product): Long {
+        return productRepository.save(product)
     }
 }

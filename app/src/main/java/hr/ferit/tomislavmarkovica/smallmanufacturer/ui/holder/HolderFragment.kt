@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.*
 import androidx.navigation.fragment.findNavController
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentHolderBinding
@@ -14,7 +13,6 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols.TabBut
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductLongPressListener
-import java.util.stream.DoubleStream.builder
 
 
 class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListener {
@@ -34,26 +32,29 @@ class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListe
         return binding.root
     }
 
-    override fun onTabButtonClick(position: Int) {
-        val fragment: Fragment = when (position) {
-            0 -> {
+    private fun getFragmentForButtonClicked(position: Int) : Fragment {
+        return when (position) {
+                0 -> {
                 ProductListTabFragment()
             }
-            1 -> {
+                1 -> {
                 OrdersFragment()
             }
-            else -> {
+                else -> {
                 ContactsFragment()
             }
         }
+    }
+
+    override fun onTabButtonClick(position: Int) {
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container, fragment)
+        fragmentTransaction.replace(R.id.fragment_container, getFragmentForButtonClicked(position))
         fragmentTransaction.commit()
     }
 
     override fun onProductLongPress(id: Long?) {
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putLong("productId", id ?: return)
         findNavController().navigate(R.id.action_holderFragment_to_productFeaturesEditFragment, bundle)
     }

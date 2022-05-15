@@ -1,4 +1,4 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.product.creation
+package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.creation
 
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 

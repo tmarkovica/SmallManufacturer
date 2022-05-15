@@ -8,11 +8,12 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.converters.PhotoConverters
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
+import hr.ferit.tomislavmarkovica.smallmanufacturer.model.FeatureProductRelation
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
 @Database(
-    entities = [Product::class, Feature::class],
-    version = 3,
+    entities = [Product::class, Feature::class, FeatureProductRelation::class],
+    version = 5,
     exportSchema = false
 )
 @TypeConverters(PhotoConverters::class)
@@ -20,6 +21,7 @@ abstract class SmallManufacturerDatabase : RoomDatabase() {
 
     abstract fun getProductDao(): ProductDao
     abstract fun getFeatureDao(): FeatureDao
+    abstract fun getFeatureProductRelationDao(): FeatureProductRelationDao
 
     companion object {
 

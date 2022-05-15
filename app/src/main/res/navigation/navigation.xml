@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/productCreationFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.product.creation.ProductCreationFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.creation.ProductCreationFragment"
         android:label="fragment_product_creation"
         tools:layout="@layout/fragment_product_creation" >
         <action
@@ -52,7 +52,7 @@
         android:label="ContactsFragment" />
     <fragment
         android:id="@+id/productFeaturesEditFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.product.featuresedit.ProductFeaturesEditFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.featuresedit.ProductFeaturesEditFragment"
         android:label="ProductFeaturesEditFragment" >
         <action
             android:id="@+id/action_productFeaturesEditFragment_to_holderFragment"

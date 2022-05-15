@@ -8,7 +8,7 @@ class ProductRepositoryImplementation(
     private val productDao: ProductDao
 ) : ProductRepository {
 
-    override fun save(product: Product) = productDao.save(product)
+    override fun save(product: Product): Long = productDao.save(product)
 
     //override fun delete(product: Product) = productDao.delete(product)
     override fun getProductById(id: Long): Product? = productDao.getProductById(id)

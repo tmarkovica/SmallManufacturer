@@ -8,7 +8,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(product: Product)
+    fun save(product: Product): Long
 
     @Delete
     fun delete(product: Product)

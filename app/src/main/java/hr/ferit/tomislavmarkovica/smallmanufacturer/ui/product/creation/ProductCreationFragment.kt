@@ -1,4 +1,4 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.product.creation
+package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.creation
 
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
@@ -22,7 +22,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.FeaturesViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ProductsViewModel
-import hr.ferit.tomislavmarkovica.smallmanufacturer.product.featureadapter.FeatureAdapter
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.featureadapter.FeatureAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductCreationFragment: Fragment() {
@@ -45,12 +45,11 @@ class ProductCreationFragment: Fragment() {
             container,
             false
         )
-        getDefaultProductImageFromResources()
-        setImageToImageView()
         binding.buttonSaveProduct.setOnClickListener { saveProduct() }
         binding.buttonAddFeature.setOnClickListener { addFeature() }
         binding.imageViewProductImage.setOnClickListener { addProductPhoto() }
         binding.imageViewProductImage.setOnLongClickListener { removePhoto() }
+        getDefaultProductImageFromResources()
         bindView()
         setupRecyclerView()
         return binding.root
@@ -125,13 +124,15 @@ class ProductCreationFragment: Fragment() {
     }
 
     private fun saveProduct() {
-        viewModelProducts.saveProduct(getProductFromInput() ?: return)
+        val productId = viewModelProducts.saveProduct(getProductFromInput() ?: return)
+        viewModelFeatures.save(productId)
+
         Toast.makeText(context, "New product added", Toast.LENGTH_SHORT).show()
         Navigation.findNavController(binding.root).navigate(R.id.action_productCreationFragment_to_holderFragment)
     }
 
     private fun addFeature() {
-        viewModelFeatures.saveFeature(getFeatureFromTextInput() ?: return)
+        viewModelFeatures.addFeature(getFeatureFromTextInput() ?: return)
         binding.editTextProductFeature.text.clear()
     }
 

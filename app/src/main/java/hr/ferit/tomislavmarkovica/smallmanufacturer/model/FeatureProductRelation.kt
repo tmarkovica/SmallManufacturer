@@ -5,7 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "productFeatures",
+    tableName = "featureProductRelations",
     foreignKeys = [
         // Foreign key to Product
         ForeignKey(
@@ -21,15 +21,13 @@ import androidx.room.PrimaryKey
             childColumns = ["featureID"],
             onDelete = ForeignKey.CASCADE
         )
-    ]
+    ],
+    primaryKeys = ["productID", "featureID"]
 )
-data class ProductFeature(
+data class FeatureProductRelation(
 
-    @PrimaryKey(autoGenerate = false)
     var productID: Long = 0,
 
-    @PrimaryKey(autoGenerate = false)
     var featureID: Long = 0
 
-) {
-}
+)

@@ -1,4 +1,4 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.product.featureadapter
+package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.featureadapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
