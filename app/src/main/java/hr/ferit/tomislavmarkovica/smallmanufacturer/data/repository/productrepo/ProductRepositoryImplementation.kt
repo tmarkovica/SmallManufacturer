@@ -1,7 +1,7 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.productrepo
 
 import androidx.lifecycle.LiveData
-import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.ProductDao
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.dataaccessobjects.ProductDao
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
 class ProductRepositoryImplementation(

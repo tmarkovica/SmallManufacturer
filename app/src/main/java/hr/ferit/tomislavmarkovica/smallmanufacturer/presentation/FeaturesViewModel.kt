@@ -3,7 +3,7 @@ package hr.ferit.tomislavmarkovica.smallmanufacturer.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featureproductrelation.FeatureProductRelationRepository
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featureproductrelationrepo.FeatureProductRelationRepository
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featurerepo.FeatureRepository
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.FeatureProductRelation

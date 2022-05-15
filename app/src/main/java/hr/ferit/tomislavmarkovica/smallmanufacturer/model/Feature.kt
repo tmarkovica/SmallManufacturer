@@ -12,5 +12,4 @@ data class Feature(
 
     @ColumnInfo(name = "feature")
     val feature: String
-) {
-}
+)

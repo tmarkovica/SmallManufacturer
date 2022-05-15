@@ -3,7 +3,6 @@ package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.creation
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -25,6 +24,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ProductsViewMod
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.featureadapter.FeatureAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@Suppress("DEPRECATION")
 class ProductCreationFragment: Fragment() {
 
     private lateinit var binding: FragmentProductCreationBinding
@@ -32,7 +32,6 @@ class ProductCreationFragment: Fragment() {
     private val viewModelFeatures: FeaturesViewModel by viewModel()
     private lateinit var adapter: FeatureAdapter
 
-    private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var imageBitmap: Bitmap
 
     override fun onCreateView(
@@ -67,20 +66,18 @@ class ProductCreationFragment: Fragment() {
         val alertDialog: AlertDialog? = activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.apply {
-                setPositiveButton("Yes",
-                    DialogInterface.OnClickListener { dialog, id ->
+                setPositiveButton("Yes"
+                ) { _, _ ->
                         // User clicked OK button
                         getDefaultProductImageFromResources()
                         setImageToImageView()
-                    })
-                setNegativeButton("No",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        // User cancelled the dialog
-                    })
+                    }
+                setNegativeButton("No"
+                ) { _, _ ->
+                    // User cancelled the dialog
+                }
                 setTitle("Do you want to delete image")
             }
-            // Set other dialog properties
-            // Create the AlertDialog
             builder.create()
         }
         alertDialog?.show()
@@ -94,7 +91,7 @@ class ProductCreationFragment: Fragment() {
     private fun getProductFromInput() : Product? {
         val name = binding.editTextProductName.text.toString()
         val description = binding.editTextProductDescription.text.toString()
-        return if (name == "" || description == "") null
+        return if (name == "") null
             else
                 Product(0, name, description, imageBitmap)
     }
@@ -156,5 +153,9 @@ class ProductCreationFragment: Fragment() {
             imageBitmap = data?.extras?.get("data") as Bitmap
             setImageToImageView()
         }
+    }
+
+    companion object {
+        const val REQUEST_IMAGE_CAPTURE = 1
     }
 }

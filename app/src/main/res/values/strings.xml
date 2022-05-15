@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Small Manufacturer</string>
+    <string name="tabItemTextProducts">Products</string>
+    <string name="tabItemTextOrders">Orders</string>
+    <string name="tabItemTextContacts">Contacts</string>
+    <string name="textViewText_OrderDate">Date when order was taken</string>
+    <string name="textViewText_DeliveryDate">Planned delivery date</string>
 </resources>

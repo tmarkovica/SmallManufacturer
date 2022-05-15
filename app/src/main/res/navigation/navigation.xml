@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_holderFragment_to_productFeaturesEditFragment"
             app:destination="@id/productFeaturesEditFragment" />
+        <action
+            android:id="@+id/action_holderFragment_to_createOrderFragment"
+            app:destination="@id/createOrderFragment" />
     </fragment>
 
     <fragment
@@ -56,6 +59,14 @@
         android:label="ProductFeaturesEditFragment" >
         <action
             android:id="@+id/action_productFeaturesEditFragment_to_holderFragment"
+            app:destination="@id/holderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createOrderFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.creation.CreateOrderFragment"
+        android:label="CreateOrderFragment" >
+        <action
+            android:id="@+id/action_createOrderFragment_to_holderFragment"
             app:destination="@id/holderFragment" />
     </fragment>
 </navigation>

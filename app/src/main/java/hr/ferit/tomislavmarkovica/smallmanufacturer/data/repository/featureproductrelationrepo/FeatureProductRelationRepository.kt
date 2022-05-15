@@ -1,4 +1,4 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featureproductrelation
+package hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featureproductrelationrepo
 
 import androidx.lifecycle.LiveData
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature

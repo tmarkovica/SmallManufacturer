@@ -1,7 +1,7 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featurerepo
 
 import androidx.lifecycle.LiveData
-import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.FeatureDao
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.dataaccessobjects.FeatureDao
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 
 class FeatureRepositoryImplementation (

@@ -45,5 +45,9 @@ class NavigationControlsFragment : Fragment() {
                 // Handle tab unselect
             }
         })
+
+        val defaultTabIndex = 1
+        tabLayoutMediator.getTabAt(defaultTabIndex)?.select()
+        listener.onTabButtonClick(defaultTabIndex)
     }
 }

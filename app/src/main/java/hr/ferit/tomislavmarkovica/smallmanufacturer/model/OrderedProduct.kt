@@ -3,10 +3,9 @@ package hr.ferit.tomislavmarkovica.smallmanufacturer.model
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "featureProductRelations",
+    tableName = "orderedProducts",
     foreignKeys = [
         // Foreign key to Product
         ForeignKey(
@@ -15,22 +14,20 @@ import androidx.room.PrimaryKey
             childColumns = ["productID"],
             onDelete = ForeignKey.CASCADE
         ),
-        // Foreign key to Feature
+        // Foreign key to Order
         ForeignKey(
-            entity = Feature::class,
+            entity = Order::class,
             parentColumns = ["id"],
-            childColumns = ["featureID"],
+            childColumns = ["orderID"],
             onDelete = ForeignKey.CASCADE
         )
     ],
-    primaryKeys = ["productID", "featureID"],
+    primaryKeys = ["productID", "orderID"],
     // column references a foreign key but it is not part of an index fix:
-    indices = [Index("featureID")]
+    indices = [Index("orderID")]
 )
-data class FeatureProductRelation(
-
+data class OrderedProduct (
     var productID: Long = 0,
 
-    var featureID: Long = 0
-
+    var orderID: Long = 0
 )

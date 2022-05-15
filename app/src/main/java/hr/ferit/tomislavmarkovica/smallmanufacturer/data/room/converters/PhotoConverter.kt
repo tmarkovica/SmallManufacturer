@@ -5,10 +5,10 @@ import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
 import java.io.ByteArrayOutputStream
 
-class PhotoConverters {
+class PhotoConverter {
 
     @TypeConverter
-    fun froBitmap(bitmap: Bitmap) : ByteArray {
+    fun fromBitmap(bitmap: Bitmap) : ByteArray {
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
         return outputStream.toByteArray()

@@ -1,4 +1,4 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.data.room
+package hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.dataaccessobjects
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

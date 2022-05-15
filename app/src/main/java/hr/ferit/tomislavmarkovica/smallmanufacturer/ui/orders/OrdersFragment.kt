@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentOrdersBinding
 
 class OrdersFragment : Fragment() {
@@ -21,6 +23,13 @@ class OrdersFragment : Fragment() {
             container,
             false
         )
+        binding.floatingActionButtonAddOrder.setOnClickListener { showCreateOrderFragment() }
         return binding.root
     }
+
+    private fun showCreateOrderFragment() {
+        Navigation.findNavController(binding.root).navigate(R.id.action_holderFragment_to_createOrderFragment)
+    }
+
+
 }
