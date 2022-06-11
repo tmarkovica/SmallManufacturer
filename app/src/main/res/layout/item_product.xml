@@ -7,7 +7,8 @@
     android:layout_marginTop="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginBottom="5dp"
-    android:background="@color/item_product_color">
+    android:background="@color/item_color"
+    >
 
     <ImageView
         android:id="@+id/imageView_productImage"

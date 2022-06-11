@@ -1,19 +1,17 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products
+package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
-import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.ItemProductBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
 class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
 
     private val products = mutableListOf<Product>()
-    var listener: OnProductEventListener? = null
+    var listener: ProductEventListener? = null
 
-    fun setTasks(products: List<Product>) {
+    fun setProducts(products: List<Product>) {
         this.products.clear()
         this.products.addAll(products)
         this.notifyDataSetChanged()
@@ -28,8 +26,13 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
         holder.bind(product)
+
+        if (listener == null) return
+
         listener?.let {
-            holder.itemView.setOnClickListener { listener?.onProductClick(product.id) }
+            holder.itemView.setOnClickListener {
+                listener?.onProductClick(product.id)
+            }
             holder.itemView.setOnLongClickListener {
                 listener?.onProductLongPress(product.id)
                 return@setOnLongClickListener true

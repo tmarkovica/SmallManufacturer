@@ -38,20 +38,23 @@
         <action
             android:id="@+id/action_holderFragment_to_createOrderFragment"
             app:destination="@id/createOrderFragment" />
+        <action
+            android:id="@+id/action_holderFragment_to_createContactFragment"
+            app:destination="@id/createContactFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/productListTabFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductListTabFragment"
         android:label="fragment_products"
         tools:layout="@layout/fragment_products" />
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.listing.OrdersFragment"
         android:label="OrdersFragment" />
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.listing.ContactsFragment"
         android:label="ContactsFragment" />
     <fragment
         android:id="@+id/productFeaturesEditFragment"
@@ -63,10 +66,40 @@
     </fragment>
     <fragment
         android:id="@+id/createOrderFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.creation.CreateOrderFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.creation.CreateOrderFragment"
         android:label="CreateOrderFragment" >
         <action
             android:id="@+id/action_createOrderFragment_to_holderFragment"
             app:destination="@id/holderFragment" />
+        <action
+            android:id="@+id/action_createOrderFragment_to_selectContactFragment"
+            app:destination="@id/selectContactFragment" />
+        <action
+            android:id="@+id/action_createOrderFragment_to_selectProductFragment"
+            app:destination="@id/selectProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createContactFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.creation.CreateContactFragment"
+        android:label="CreateContactFragment" >
+        <action
+            android:id="@+id/action_createContactFragment_to_holderFragment"
+            app:destination="@id/holderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectContactFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.selection.SelectContactFragment"
+        android:label="SelectContactFragment" >
+        <action
+            android:id="@+id/action_selectContactFragment_to_createOrderFragment"
+            app:destination="@id/createOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectProductFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.selection.SelectProductFragment"
+        android:label="SelectProductFragment" >
+        <action
+            android:id="@+id/action_selectProductFragment_to_createOrderFragment"
+            app:destination="@id/createOrderFragment" />
     </fragment>
 </navigation>

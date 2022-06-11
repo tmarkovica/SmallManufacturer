@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayout
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentNavigationControlsBinding
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.TabPositionViewModel
 
 
 class NavigationControlsFragment : Fragment() {
@@ -14,6 +16,8 @@ class NavigationControlsFragment : Fragment() {
     private lateinit var listener: TabButtonClickListener
 
     private lateinit var binding: FragmentNavigationControlsBinding
+
+    private val tabPositionViewModel: TabPositionViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +38,10 @@ class NavigationControlsFragment : Fragment() {
         val tabLayoutMediator = binding.tabLayout
         tabLayoutMediator.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.position?.let { listener.onTabButtonClick(it) }
+                tab?.position?.let {
+                    tabPositionViewModel.tabPosition = it
+                    listener.onTabButtonClick(it)
+                }
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -46,8 +53,8 @@ class NavigationControlsFragment : Fragment() {
             }
         })
 
-        val defaultTabIndex = 1
-        tabLayoutMediator.getTabAt(defaultTabIndex)?.select()
-        listener.onTabButtonClick(defaultTabIndex)
+        val startingTabIndex = tabPositionViewModel.tabPosition
+        tabLayoutMediator.getTabAt(startingTabIndex)?.select()
+        listener.onTabButtonClick(startingTabIndex)
     }
 }

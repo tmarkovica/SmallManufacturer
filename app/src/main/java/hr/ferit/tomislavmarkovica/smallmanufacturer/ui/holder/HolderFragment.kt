@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentHolderBinding
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contacts.ContactsFragment
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.listing.ContactsFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols.TabButtonClickListener
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.orders.OrdersFragment
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductListTabFragment
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products.ProductLongPressListener
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.listing.OrdersFragment
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductListTabFragment
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductLongPressListener
 
 
 class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListener {

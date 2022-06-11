@@ -5,4 +5,9 @@
     <string name="tabItemTextContacts">Contacts</string>
     <string name="textViewText_OrderDate">Date when order was taken</string>
     <string name="textViewText_DeliveryDate">Planned delivery date</string>
+    <string name="buttonText_Select">Select</string>
+    <string name="textView_OrderDateLabelText">"Order date: "</string>
+    <string name="textView_DeliveryDateLabelText">"Delivery date: "</string>
+    <string name="textView_contactLabelText">Contact</string>
+    <string name="textView_productLabelText">Product</string>
 </resources>

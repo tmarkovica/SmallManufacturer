@@ -19,9 +19,11 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.*
 
         Order::class,
         Contact::class,
-        OrderedProduct::class
+        OrderedProduct::class,
+
+        OrderedFeature::class
     ],
-    version = 8,
+    version = 10,
     exportSchema = false
 )
 @TypeConverters(PhotoConverter::class, DateConverter::class)
@@ -34,6 +36,8 @@ abstract class SmallManufacturerDatabase : RoomDatabase() {
     abstract fun getOrderDao(): OrderDao
     abstract fun getContactDao(): ContactDao
     abstract fun getOrderedProductsDao(): OrderedProductsDao
+
+    abstract fun getOrderedFeatureDao(): OrderedFeatureDao
 
     companion object {
 

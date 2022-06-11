@@ -11,4 +11,7 @@
     <color name="fragment_contacts_color">#E3B782</color>
     <color name="fragment_orders_color">#D0DEC1</color>
     <color name="item_product_color">#C4B2B2</color>
+    <color name="item_contact_color">#C4B2B2</color>
+    <color name="item_order_color">#696767</color>
+    <color name="item_color">#C4B2B2</color>
 </resources>

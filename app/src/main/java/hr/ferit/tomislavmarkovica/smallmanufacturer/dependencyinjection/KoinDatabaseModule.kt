@@ -36,4 +36,10 @@ val databaseModule = module {
     single<OrderDao> { provideOrderDao(get()) }
     single<ContactDao> { provideContactDao(get()) }
     single<OrderedProductsDao> { provideOrderedProductsDao(get()) }
+
+
+    fun provideOrderedFeatureDao(database: SmallManufacturerDatabase): OrderedFeatureDao {
+        return database.getOrderedFeatureDao()
+    }
+    single<OrderedFeatureDao> { provideOrderedFeatureDao(get()) }
 }

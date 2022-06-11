@@ -1,4 +1,4 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.products
+package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing
 
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +13,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentProducts
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ProductsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProductListTabFragment : Fragment(), OnProductEventListener {
+class ProductListTabFragment : Fragment(), ProductEventListener {
 
     private lateinit var binding: FragmentProductsBinding
     private val viewModel: ProductsViewModel by viewModel()
@@ -75,6 +75,6 @@ class ProductListTabFragment : Fragment(), OnProductEventListener {
     }
 
     private fun updateData() {
-        viewModel.products.value?.let { adapter.setTasks(it) }
+        viewModel.products.value?.let { adapter.setProducts(it) }
     }
 }
