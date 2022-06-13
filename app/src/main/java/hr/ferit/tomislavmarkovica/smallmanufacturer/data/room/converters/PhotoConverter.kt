@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream
 class PhotoConverter {
 
     @TypeConverter
-    fun fromBitmap(bitmap: Bitmap) : ByteArray {
+    fun fromBitmap(bitmap: Bitmap): ByteArray {
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
         return outputStream.toByteArray()

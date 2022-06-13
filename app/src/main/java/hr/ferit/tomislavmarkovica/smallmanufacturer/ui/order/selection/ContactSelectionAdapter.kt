@@ -1,16 +1,20 @@
-package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.adapter
+package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.selection
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Contact
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.adapter.ContactViewHolder
 
-class ContactAdapter : RecyclerView.Adapter<ContactViewHolder>() {
+class ContactSelectionAdapter : RecyclerView.Adapter<ContactViewHolder>() {
 
     private val contacts = mutableListOf<Contact>()
 
-    var listener: ContactEventListener? = null
+    private var selectedItemViewHolder: ContactViewHolder? = null
+    private var selectedContact: Contact? = null
 
     fun setContacts(contacts: List<Contact>) {
         this.contacts.clear()
@@ -24,16 +28,27 @@ class ContactAdapter : RecyclerView.Adapter<ContactViewHolder>() {
         return ContactViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact = contacts[position]
         holder.bind(contact)
 
-        listener?.let {
-            holder.itemView.setOnClickListener {
-                listener?.onContactClick(contact.id)
-            }
+        holder.itemView.setOnClickListener {
+            highlightContact(holder)
+            selectedContact = contact
         }
     }
 
     override fun getItemCount(): Int = contacts.count()
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun highlightContact(holder: ContactViewHolder) {
+        selectedItemViewHolder?.defaultItemColor()
+        holder.highlightItem()
+        selectedItemViewHolder = holder
+    }
+
+    fun getSelectedContact(): Contact? {
+        return selectedContact
+    }
 }

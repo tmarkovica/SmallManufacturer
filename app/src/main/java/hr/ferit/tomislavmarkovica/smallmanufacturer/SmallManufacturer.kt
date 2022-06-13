@@ -7,8 +7,12 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.dependencyinjection.viewMode
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import android.util.Log
+import hr.ferit.tomislavmarkovica.smallmanufacturer.dependencyinjection.notificationController
+import org.koin.android.ext.android.getKoin
 
-class SmallManufacturer: Application() {
+class SmallManufacturer : Application() {
+
+    private lateinit var notificationContr: NotificationController
 
     override fun onCreate() {
         super.onCreate()
@@ -19,12 +23,16 @@ class SmallManufacturer: Application() {
             modules(
                 databaseModule,
                 repositoryModule,
-                viewModelModule
+                viewModelModule,
+                notificationController
             )
         }
+
+        notificationContr = application.getKoin().get<NotificationController>()
+        notificationContr.allowNotifications()
     }
 
-    companion object{
+    companion object {
         lateinit var application: Application
     }
 }

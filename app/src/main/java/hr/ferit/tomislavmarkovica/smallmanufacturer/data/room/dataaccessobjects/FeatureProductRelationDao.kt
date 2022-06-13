@@ -13,10 +13,6 @@ interface FeatureProductRelationDao {
     @Delete
     fun delete(featureProductRelation: FeatureProductRelation)
 
-//    @Query("SELECT * FROM featureProductRelations WHERE productID = :id")
     @Query("SELECT features.id, features.feature FROM featureProductRelations, features WHERE productID = :id AND features.id = featureProductRelations.featureID")
     fun getAllFeaturesForProduct(id: Long?): LiveData<List<Feature>>
-
-//    @Query("SELECT features.id, features.feature FROM featureProductRelations, features WHERE productID = :id AND features.id = featureProductRelations.featureID")
-//    fun getAllFeaturesForProductId(id: Long?): LiveData<List<Feature>>
 }

@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.contactrepo.ContactRepository
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Contact
-import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
 class ContactsViewModel(
     private val contactRepository: ContactRepository
-): ViewModel() {
+) : ViewModel() {
 
     var contacts: LiveData<List<Contact>> = contactRepository.getAllContacts()
 
@@ -17,6 +16,6 @@ class ContactsViewModel(
     }
 
     fun getContactById(id: Long?): Contact? {
-       return id?.let { contactRepository.getContactById(it) }
+        return id?.let { contactRepository.getContactById(it) }
     }
 }

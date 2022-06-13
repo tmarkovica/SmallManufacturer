@@ -1,6 +1,5 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.contactrepo.ContactRepository
@@ -18,15 +17,8 @@ class OrdersViewModel(
 
     var orders: LiveData<List<Order>> = orderRepository.getAllOrders()
 
-//    private val allProducts = productRepository.getAllProducts()
-//    private val _products = MutableLiveData<MutableList<Product>>(emptyList<Product>().toMutableList())
-//    val products = _products
-//    private val _contacts = MutableLiveData<MutableList<Contact>>(emptyList<Contact>().toMutableList())
-//    val contacts = _contacts
-
-
-    fun print() {
-        Log.d("TAG", "*** OrdersViewMOdel: " + this.toString())
+    fun getOrderById(id: Long): Order? {
+        return orderRepository.getOrderById(id)
     }
 
     fun findConnectedContacts(orders: List<Order>): List<Contact> {
@@ -42,17 +34,4 @@ class OrdersViewModel(
             tempList.add(productRepository.getProductById(o.productId)!!)
         return tempList
     }
-
-//    fun save(order: Order): Long {
-//        return orderRepository.save(order)
-//    }
-
-//    fun getProduct(): Product? {
-//        return productRepository.getProductById()
-//    }
-//
-//    fun getContact(): Contact? {
-//
-//    }
-
 }

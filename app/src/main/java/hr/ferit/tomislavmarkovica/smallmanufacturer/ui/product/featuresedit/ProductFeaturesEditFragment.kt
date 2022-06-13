@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentProductFeaturesEditBinding
+import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentDetailsProductBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.FeatureProductRelationViewModel
@@ -14,11 +14,11 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ProductsViewMod
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.featureadapter.FeatureAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProductFeaturesEditFragment: Fragment() {
+class ProductFeaturesEditFragment : Fragment() {
 
-    private lateinit var binding: FragmentProductFeaturesEditBinding
+    private lateinit var binding: FragmentDetailsProductBinding
     private val viewModelProduct: ProductsViewModel by viewModel()
-    private val viewModelFeatureProduct: FeatureProductRelationViewModel by viewModel()//FeaturesViewModel by viewModel()
+    private val viewModelFeatureProduct: FeatureProductRelationViewModel by viewModel()
     private lateinit var adapter: FeatureAdapter
 
     override fun onCreateView(
@@ -26,7 +26,7 @@ class ProductFeaturesEditFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProductFeaturesEditBinding.inflate(
+        binding = FragmentDetailsProductBinding.inflate(
             inflater,
             container,
             false
@@ -79,7 +79,7 @@ class ProductFeaturesEditFragment: Fragment() {
         viewModelFeatureProduct.features.value?.let { adapter.setFeatures(it) }
     }
 
-    private fun getFeatureFromTextInput() : Feature? {
+    private fun getFeatureFromTextInput(): Feature? {
         val feature = binding.editTextProductFeature.text.toString()
         return if (feature == "") null
         else return Feature(0, feature)

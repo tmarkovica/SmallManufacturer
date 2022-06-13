@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentSelectProductBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ProductsViewModel
-import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SharedViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SharedCotactAndProductViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductEventListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,7 +20,7 @@ class SelectProductFragment: Fragment(), ProductEventListener {
 
     private lateinit var binding: FragmentSelectProductBinding
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val sharedCotactAndProductViewModel: SharedCotactAndProductViewModel by activityViewModels()
 
     private val viewModel: ProductsViewModel by viewModel()
 
@@ -74,7 +74,7 @@ class SelectProductFragment: Fragment(), ProductEventListener {
     private fun confirmSelectedContact() {
         val product: Product = adapter.getSelectedProduct() ?: return
         Toast.makeText(context, "Product selected", Toast.LENGTH_SHORT).show()
-        sharedViewModel.setSelectedProduct(product)
+        sharedCotactAndProductViewModel.setSelectedProduct(product)
         findNavController().navigateUp()
     }
 }

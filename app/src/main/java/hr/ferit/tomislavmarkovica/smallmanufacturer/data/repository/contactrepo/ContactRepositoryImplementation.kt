@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.dataaccessobjects.ContactDao
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Contact
 
-class ContactRepositoryImplementation (
+class ContactRepositoryImplementation(
     private val contactDao: ContactDao
-): ContactRepository {
+) : ContactRepository {
 
-    override fun save(contact: Contact): Long  = contactDao.save(contact)
+    override fun save(contact: Contact): Long = contactDao.save(contact)
 
     override fun delete(contact: Contact) = contactDao.delete(contact)
 

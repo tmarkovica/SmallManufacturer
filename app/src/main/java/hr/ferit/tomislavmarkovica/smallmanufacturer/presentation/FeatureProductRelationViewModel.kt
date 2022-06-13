@@ -7,14 +7,15 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.FeatureProductRelation
 import kotlinx.coroutines.launch
 
-class FeatureProductRelationViewModel (
+class FeatureProductRelationViewModel(
     private val featureProductRelationRepository: FeatureProductRelationRepository,
     private val featureRepository: FeatureRepository
 ) : ViewModel() {
 
     private var productId: Long = 0
 
-    private val _features : MutableLiveData<MutableList<Feature>> = MutableLiveData(mutableListOf()) //Feature(0,"default")
+    private val _features: MutableLiveData<MutableList<Feature>> =
+        MutableLiveData(mutableListOf()) //Feature(0,"default")
     var features: LiveData<MutableList<Feature>> = _features
 
     private fun postFeatures(featuresToPost: List<Feature>) {

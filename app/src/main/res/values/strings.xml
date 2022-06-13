@@ -1,13 +1,35 @@
 <resources>
     <string name="app_name">Small Manufacturer</string>
-    <string name="tabItemTextProducts">Products</string>
-    <string name="tabItemTextOrders">Orders</string>
-    <string name="tabItemTextContacts">Contacts</string>
-    <string name="textViewText_OrderDate">Date when order was taken</string>
-    <string name="textViewText_DeliveryDate">Planned delivery date</string>
-    <string name="buttonText_Select">Select</string>
-    <string name="textView_OrderDateLabelText">"Order date: "</string>
-    <string name="textView_DeliveryDateLabelText">"Delivery date: "</string>
-    <string name="textView_contactLabelText">Contact</string>
-    <string name="textView_productLabelText">Product</string>
+
+    <string name="products">Products</string>
+    <string name="orders">Orders</string>
+    <string name="contacts">Contacts</string>
+    <string name="features">Features</string>
+    ¸¸
+    <string name="contact">Contact</string>
+    <string name="product">Product</string>
+
+    <string name="order_date_text">Date when order was taken</string>
+    <string name="delivery_date_text">Planned delivery date</string>
+    <string name="order_date">"Order date: "</string>
+    <string name="delivery_date">"Delivery date: "</string>
+
+    <string name="first_name">First name:</string>
+    <string name="last_name">Last name:</string>
+    <string name="phone_number">Phone number:</string>
+    <string name="email">Email:</string>
+    <string name="address">Address:</string>
+
+    <string name="create_order">Create Order</string>
+    <string name="join_contact">Join contact</string>
+    <string name="join_product">Join product</string>
+    <string name="product_image">Product image</string>
+    <string name="product_name">Product name</string>
+    <string name="description">Description</string>
+    <string name="new_feature">New Feature</string>
+    <string name="add">Add</string>
+    <string name="select">Select</string>
+    <string name="save">Save</string>
+    <string name="add_contact">Add contact</string>
+    <string name="add_product">Add product</string>
 </resources>

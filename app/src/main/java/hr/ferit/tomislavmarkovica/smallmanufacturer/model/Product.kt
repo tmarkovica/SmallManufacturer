@@ -23,4 +23,4 @@ data class Product(
     @ColumnInfo(name = "photo")
     val photo: Bitmap
 
-    )
+)

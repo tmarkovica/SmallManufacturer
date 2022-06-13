@@ -39,7 +39,8 @@ class ProductListTabFragment : Fragment(), ProductEventListener {
     }
 
     private fun showProductCreationFragment() {
-        Navigation.findNavController(binding.root).navigate(R.id.action_holderFragment_to_productCreationFragment)
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_holderFragment_to_productCreationFragment)
     }
 
     private fun bindView() {

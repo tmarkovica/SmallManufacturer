@@ -7,7 +7,6 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
-import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.ItemContactBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.ItemProductBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
@@ -30,6 +29,5 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun defaultItemColor() {
         val binding = ItemProductBinding.bind(itemView)
         binding.root.setBackgroundColor(binding.root.context.getColor(R.color.item_color))
-//        binding.root.setBackgroundColor(R.color.item_color)
     }
 }

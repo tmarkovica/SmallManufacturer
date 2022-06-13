@@ -6,7 +6,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Order
 
 class SaveOrderViewModel(
     private val orderRepository: OrderRepository
-): ViewModel() {
+) : ViewModel() {
 
     fun save(order: Order): Long {
         return orderRepository.save(order)

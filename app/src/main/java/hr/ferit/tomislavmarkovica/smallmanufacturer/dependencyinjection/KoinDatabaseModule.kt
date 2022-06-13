@@ -30,13 +30,8 @@ val databaseModule = module {
     fun provideContactDao(database: SmallManufacturerDatabase): ContactDao {
         return database.getContactDao()
     }
-    fun provideOrderedProductsDao(database: SmallManufacturerDatabase): OrderedProductsDao {
-        return database.getOrderedProductsDao()
-    }
     single<OrderDao> { provideOrderDao(get()) }
     single<ContactDao> { provideContactDao(get()) }
-    single<OrderedProductsDao> { provideOrderedProductsDao(get()) }
-
 
     fun provideOrderedFeatureDao(database: SmallManufacturerDatabase): OrderedFeatureDao {
         return database.getOrderedFeatureDao()

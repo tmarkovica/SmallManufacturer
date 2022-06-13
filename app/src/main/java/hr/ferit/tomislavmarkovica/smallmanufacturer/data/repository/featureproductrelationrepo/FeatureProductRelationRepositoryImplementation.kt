@@ -8,7 +8,12 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.FeatureProductRelation
 class FeatureProductRelationRepositoryImplementation(
     private val featureProductRelationDao: FeatureProductRelationDao
 ) : FeatureProductRelationRepository {
-    override fun save(featurePoductRelation: FeatureProductRelation) = featureProductRelationDao.save(featurePoductRelation)
-    override fun delete(featurePoductRelation: FeatureProductRelation) = featureProductRelationDao.delete(featurePoductRelation)
-    override fun getAllFeaturesForProduct(id: Long?): LiveData<List<Feature>> = featureProductRelationDao.getAllFeaturesForProduct(id)
+    override fun save(featuresProductRelation: FeatureProductRelation) =
+        featureProductRelationDao.save(featuresProductRelation)
+
+    override fun delete(featuresProductRelation: FeatureProductRelation) =
+        featureProductRelationDao.delete(featuresProductRelation)
+
+    override fun getAllFeaturesForProduct(id: Long?): LiveData<List<Feature>> =
+        featureProductRelationDao.getAllFeaturesForProduct(id)
 }

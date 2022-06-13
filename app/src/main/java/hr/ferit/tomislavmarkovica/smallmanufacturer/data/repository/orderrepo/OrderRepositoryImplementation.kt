@@ -6,9 +6,9 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Order
 
 class OrderRepositoryImplementation(
     private val orderDao: OrderDao
-): OrderRepository {
+) : OrderRepository {
 
-    override fun save(order: Order): Long  = orderDao.save(order)
+    override fun save(order: Order): Long = orderDao.save(order)
 
     override fun delete(order: Order) = orderDao.delete(order)
 

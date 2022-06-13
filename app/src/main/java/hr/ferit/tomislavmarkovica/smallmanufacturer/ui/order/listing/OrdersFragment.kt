@@ -1,7 +1,6 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.listing
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentOrdersBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.OrdersViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.details.OrderEventListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class OrdersFragment : Fragment() {
+class OrdersFragment : Fragment(), OrderEventListener {
 
     private val viewModel: OrdersViewModel by viewModel()
 
     private lateinit var binding: FragmentOrdersBinding
 
     private lateinit var adapter: OrderAdapter
+
+    private lateinit var listener: OrderEventListener
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +33,7 @@ class OrdersFragment : Fragment() {
             container,
             false
         )
+        listener = parentFragment as OrderEventListener
         binding.floatingActionButtonAddOrder.setOnClickListener { showCreateOrderFragment() }
         bindView()
         setupRecyclerView()
@@ -38,12 +41,11 @@ class OrdersFragment : Fragment() {
     }
 
     private fun showCreateOrderFragment() {
-        Navigation.findNavController(binding.root).navigate(R.id.action_holderFragment_to_createOrderFragment)
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_holderFragment_to_createOrderFragment)
     }
 
     private fun updateData() {
-
-        // TODO ubaciti order i product u adapter
         viewModel.orders.value?.let {
             adapter.setOrders(it)
             adapter.setContacts(viewModel.findConnectedContacts(it))
@@ -67,8 +69,11 @@ class OrdersFragment : Fragment() {
             false
         )
         adapter = OrderAdapter()
-//        adapter.listener = this
+        adapter.listener = this
         binding.recyclerView.adapter = adapter
     }
 
+    override fun onOrderLongPress(id: Long?) {
+        listener.onOrderLongPress(id)
+    }
 }

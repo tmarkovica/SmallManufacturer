@@ -13,8 +13,10 @@ interface OrderedFeatureDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(orderedFeature: OrderedFeature)
 
-    @Query("SELECT features.id, features.feature " +
-            "FROM features, orders, featureProductRelations WHERE orders.id = :id AND features.id = featureProductRelations.featureID " +
-            "AND orders.productId = featureProductRelations.productID")
+    @Query(
+        "SELECT features.id, features.feature " +
+                "FROM features, orders, orderedFeatures WHERE orders.id = :id AND orders.id = orderedFeatures.orderId" +
+                " AND features.id = orderedFeatures.featureId AND orders.productId = orderedFeatures.productId"
+    )
     fun getFeaturesOrderedForProduct(id: Long?): LiveData<List<Feature>>
 }

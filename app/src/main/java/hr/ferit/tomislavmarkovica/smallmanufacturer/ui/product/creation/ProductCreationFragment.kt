@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
-import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentProductCreationBinding
+import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentCreateProductBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.FeaturesViewModel
@@ -25,9 +25,9 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.featureadapter.Fe
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @Suppress("DEPRECATION")
-class ProductCreationFragment: Fragment() {
+class ProductCreationFragment : Fragment() {
 
-    private lateinit var binding: FragmentProductCreationBinding
+    private lateinit var binding: FragmentCreateProductBinding
     private val viewModelProducts: ProductsViewModel by viewModel()
     private val viewModelFeatures: FeaturesViewModel by viewModel()
     private lateinit var adapter: FeatureAdapter
@@ -39,7 +39,7 @@ class ProductCreationFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProductCreationBinding.inflate(
+        binding = FragmentCreateProductBinding.inflate(
             inflater,
             container,
             false
@@ -66,13 +66,15 @@ class ProductCreationFragment: Fragment() {
         val alertDialog: AlertDialog? = activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.apply {
-                setPositiveButton("Yes"
+                setPositiveButton(
+                    "Yes"
                 ) { _, _ ->
-                        // User clicked OK button
-                        getDefaultProductImageFromResources()
-                        setImageToImageView()
-                    }
-                setNegativeButton("No"
+                    // User clicked OK button
+                    getDefaultProductImageFromResources()
+                    setImageToImageView()
+                }
+                setNegativeButton(
+                    "No"
                 ) { _, _ ->
                     // User cancelled the dialog
                 }
@@ -88,18 +90,18 @@ class ProductCreationFragment: Fragment() {
         viewModelFeatures.features.value?.let { adapter.setFeatures(it) }
     }
 
-    private fun getProductFromInput() : Product? {
+    private fun getProductFromInput(): Product? {
         val name = binding.editTextProductName.text.toString()
         val description = binding.editTextProductDescription.text.toString()
         return if (name == "") null
-            else
-                Product(0, name, description, imageBitmap)
+        else
+            Product(0, name, description, imageBitmap)
     }
 
-    private fun getFeatureFromTextInput() : Feature? {
+    private fun getFeatureFromTextInput(): Feature? {
         val feature = binding.editTextProductFeature.text.toString()
         return if (feature == "") null
-            else return Feature(0, feature)
+        else return Feature(0, feature)
     }
 
     private fun setupRecyclerView() {
@@ -125,7 +127,8 @@ class ProductCreationFragment: Fragment() {
         viewModelFeatures.save(productId)
 
         Toast.makeText(context, "New product added", Toast.LENGTH_SHORT).show()
-        Navigation.findNavController(binding.root).navigate(R.id.action_productCreationFragment_to_holderFragment)
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_productCreationFragment_to_holderFragment)
     }
 
     private fun addFeature() {

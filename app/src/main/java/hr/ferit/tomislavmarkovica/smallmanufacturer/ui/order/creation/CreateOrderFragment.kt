@@ -3,7 +3,6 @@ package hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.creation
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,24 +12,32 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentCreateOrderBinding
+import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Order
-import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.*
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.FeatureProductRelationViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.OrderedFeatureViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SaveOrderViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SharedCotactAndProductViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.creation.FeatureEventListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.time.format.DateTimeFormatter
 
-class CreateOrderFragment: Fragment() {
+class CreateOrderFragment: Fragment(), FeatureEventListener {
 
-//    private val viewModelOrders: OrdersViewModel = get<OrdersViewModel>()
     private val viewModelSaveOrder: SaveOrderViewModel by viewModel()
 
-//    private lateinit var sharedViewModel: SharedViewModel
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val sharedCotactAndProductViewModel: SharedCotactAndProductViewModel by activityViewModels()
 
-    private val viewModelContacts: ContactsViewModel by viewModel()
-    private val viewModelProducts: ProductsViewModel by viewModel()
+    private val viewModelFeatureProductRelation: FeatureProductRelationViewModel by viewModel()
+
+    private val viewModelOrderedFeature: OrderedFeatureViewModel by viewModel()
 
     private lateinit var binding: FragmentCreateOrderBinding
+
+    private lateinit var adapter: FeatureSelectAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,25 +49,25 @@ class CreateOrderFragment: Fragment() {
             container,
             false
         )
-        //sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         binding.buttonJoinContact.setOnClickListener { showSelectContactFragment() }
         binding.buttonJoinProduct.setOnClickListener { showSelectProductFragment() }
         binding.buttonSaveOrder.setOnClickListener { createOrder() }
         bindContact()
         bindProduct()
-
-        Log.d("TAG", "--------------------------------------------")
-        Log.d("TAG", this.toString())
-
+        bindFeatures()
+        setupRecyclerView()
         return binding.root
     }
 
     private fun bindProduct() {
-        sharedViewModel.product.observe(viewLifecycleOwner) {
+        sharedCotactAndProductViewModel.product.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.layoutItemProduct.textViewProductName.text = it.name
                 binding.layoutItemProduct.textViewProductDescription.text = it.description
                 binding.layoutItemProduct.imageViewProductImage.setImageBitmap(it.photo)
+
+//                bindFeatures(it.id)
+                viewModelFeatureProductRelation.setProductId(it.id)
             }
             else {
                 binding.layoutItemProduct.textViewProductName.text = ""
@@ -71,7 +78,7 @@ class CreateOrderFragment: Fragment() {
     }
 
     private fun bindContact() {
-        sharedViewModel.contact.observe(viewLifecycleOwner) {
+        sharedCotactAndProductViewModel.contact.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.layoutItemContact.textViewFirstName.text = it.firstName
                 binding.layoutItemContact.textViewLastName.text = it.lastName
@@ -89,6 +96,27 @@ class CreateOrderFragment: Fragment() {
         }
     }
 
+    private fun bindFeatures() {
+        viewModelFeatureProductRelation.features.observe(viewLifecycleOwner) {
+            updateFeaturesData()
+        }
+    }
+
+    private fun updateFeaturesData() {
+        viewModelFeatureProductRelation.features.value?.let { adapter.setFeatures(it) }
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerViewFeatures.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+        adapter = FeatureSelectAdapter()
+        adapter.listener = this
+        binding.recyclerViewFeatures.adapter = adapter
+    }
+
     private fun showSelectContactFragment() {
         Navigation.findNavController(binding.root).navigate(R.id.action_createOrderFragment_to_selectContactFragment)
     }
@@ -98,41 +126,42 @@ class CreateOrderFragment: Fragment() {
     }
 
     private fun getDateFromDatePicker(picker: DatePicker): String {
-        return picker.dayOfMonth.toString() + "/" + (picker.month + 1).toString() + "/" + picker.year.toString()
+        val current = picker.dayOfMonth.toString() + "/" + (picker.month + 1).toString() + "/" + picker.year.toString()
+        val formatter = DateTimeFormatter.ofPattern("dd/M/yyyy")
+        return current.format(formatter)
+    }
+
+    private fun saveCheckedFeatures(orderId: Long, productId: Long) {
+        val featureIds = adapter.getCheckedFeaturesId()
+        viewModelOrderedFeature.saveCheckedFeatures(productId, featureIds, orderId)
+    }
+
+    private fun areProductAndContactSelected(): Boolean {
+        return sharedCotactAndProductViewModel.isContactSelected() && sharedCotactAndProductViewModel.isProductSelected()
     }
 
     private fun createOrder() {
-        if (sharedViewModel.areProductAndContactSelected() == false) return
+        if (!areProductAndContactSelected()) return
 
-        val contactId = sharedViewModel.contact.value!!.id
-        val productId = sharedViewModel.product.value!!.id
+        val contactId = sharedCotactAndProductViewModel.contact.value!!.id
+        val productId = sharedCotactAndProductViewModel.product.value!!.id
 
-//        val dateFormat = SimpleDateFormat("dd MM yyyy", Locale.GERMANY)
         val orderDate = getDateFromDatePicker(binding.datePickerOrderDate)
         val deliveryDate = getDateFromDatePicker(binding.datePickerDeliveryDate)
 
-        Log.d("TAG", ":: " + orderDate)
-        Log.d("TAG", ":: " + deliveryDate)
-
-        Log.d("TAG", orderDate)
 
         val order = Order(id = 0, orderDate = orderDate, deliveryDate = deliveryDate, contactId = contactId, productId = productId)
-
-        Log.d("TAG", "ORDER: " + order.toString())
-
-        val savingReuslt = viewModelSaveOrder.save(order)
-
-        Log.d("TAG", "savingReuslt = " + savingReuslt.toString())
-
+        val orderId = viewModelSaveOrder.save(order)
+        saveCheckedFeatures(orderId, productId)
 
         Toast.makeText(context, "Order created", Toast.LENGTH_SHORT).show()
 
-
-
-        // TODO pri spremanju order-a treba izbrisati order i product u sharedViewModelu
-        sharedViewModel.setSelectedProduct(null)
-        sharedViewModel.setSelectedContact(null)
-
+        sharedCotactAndProductViewModel.setSelectedProduct(null)
+        sharedCotactAndProductViewModel.setSelectedContact(null)
         findNavController().navigateUp()
+    }
+
+    override fun onFeatureClick(feature: Feature) {
+
     }
 }

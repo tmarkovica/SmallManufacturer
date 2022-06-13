@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.room.dataaccessobjects.FeatureDao
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 
-class FeatureRepositoryImplementation (
+class FeatureRepositoryImplementation(
     private val featureDao: FeatureDao
 ) : FeatureRepository {
 
-    override fun save(feature: Feature): Long  = featureDao.save(feature)
+    override fun save(feature: Feature): Long = featureDao.save(feature)
 
     //override fun delete(feature: Feature) = productDao.delete(feature)
     override fun getFeatureById(id: Long): Feature? = featureDao.getFeatureById(id)

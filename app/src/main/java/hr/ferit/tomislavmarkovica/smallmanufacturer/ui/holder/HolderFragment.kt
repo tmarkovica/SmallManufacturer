@@ -10,12 +10,13 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentHolderBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.listing.ContactsFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols.TabButtonClickListener
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.details.OrderEventListener
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.listing.OrdersFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductListTabFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductLongPressListener
 
 
-class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListener {
+class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListener, OrderEventListener {
 
     private lateinit var binding: FragmentHolderBinding
 
@@ -53,9 +54,17 @@ class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListe
         fragmentTransaction.commit()
     }
 
-    override fun onProductLongPress(id: Long?) {
+    private fun createBundle(key: String, value: Long): Bundle {
         val bundle = Bundle()
-        bundle.putLong("productId", id ?: return)
-        findNavController().navigate(R.id.action_holderFragment_to_productFeaturesEditFragment, bundle)
+        bundle.putLong(key, value)
+        return bundle
+    }
+
+    override fun onProductLongPress(id: Long?) {
+        findNavController().navigate(R.id.action_holderFragment_to_productFeaturesEditFragment, createBundle("productId", id!!))
+    }
+
+    override fun onOrderLongPress(id: Long?) {
+        findNavController().navigate(R.id.action_holderFragment_to_orderDetailsFragment, createBundle("orderId", id!!))
     }
 }

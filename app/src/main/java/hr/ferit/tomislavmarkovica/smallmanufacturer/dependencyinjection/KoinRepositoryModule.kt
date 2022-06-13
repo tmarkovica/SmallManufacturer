@@ -6,8 +6,8 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featureprodu
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featureproductrelationrepo.FeatureProductRelationRepositoryImplementation
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featurerepo.FeatureRepository
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.featurerepo.FeatureRepositoryImplementation
-import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.orderedproductrepo.OrderedProductsRepository
-import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.orderedproductrepo.OrderedProductsRepositoryImplementation
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.orderedfeaturerepo.OrderedFeatureRepository
+import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.orderedfeaturerepo.OrderedFeatureRepositoryImplementation
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.orderrepo.OrderRepository
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.orderrepo.OrderRepositoryImplementation
 import hr.ferit.tomislavmarkovica.smallmanufacturer.data.repository.productrepo.ProductRepository
@@ -18,8 +18,7 @@ val repositoryModule = module {
     single<ProductRepository> { ProductRepositoryImplementation(get()) }
     single<FeatureRepository> { FeatureRepositoryImplementation(get()) }
     single<FeatureProductRelationRepository> { FeatureProductRelationRepositoryImplementation(get()) }
-
     single<OrderRepository> { OrderRepositoryImplementation(get()) }
     single<ContactRepository> { ContactRepositoryImplementation(get()) }
-    single<OrderedProductsRepository> { OrderedProductsRepositoryImplementation(get()) }
+    single<OrderedFeatureRepository> { OrderedFeatureRepositoryImplementation(get()) }
 }

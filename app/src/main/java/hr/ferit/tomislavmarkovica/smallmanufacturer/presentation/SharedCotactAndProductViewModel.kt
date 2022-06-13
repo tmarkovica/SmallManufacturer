@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Contact
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
 
-class SharedViewModel: ViewModel() {
+class SharedCotactAndProductViewModel : ViewModel() {
 
     private var _product = MutableLiveData<Product?>(null)
     val product: LiveData<Product?> = _product
@@ -22,8 +22,7 @@ class SharedViewModel: ViewModel() {
         _contact.value = c
     }
 
-    fun areProductAndContactSelected(): Boolean {
-        if (contact.value == null || product.value == null) return false
-        else return true
-    }
+    fun isContactSelected(): Boolean = contact.value != null
+
+    fun isProductSelected(): Boolean = product.value != null
 }

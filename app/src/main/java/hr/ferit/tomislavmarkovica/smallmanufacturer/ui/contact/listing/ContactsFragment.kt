@@ -42,7 +42,7 @@ class ContactsFragment: Fragment() {
     }
 
     private fun updateData() {
-        viewModel.contacts.value?.let { adapter.setTasks(it) }
+        viewModel.contacts.value?.let { adapter.setContacts(it) }
     }
 
     private fun bindView() {

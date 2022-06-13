@@ -7,18 +7,15 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.R
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Contact
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Order
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Product
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.adapter.ContactEventListener
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.details.OrderEventListener
 
-class OrderAdapter: RecyclerView.Adapter<OrderViewHolder>() {
+class OrderAdapter : RecyclerView.Adapter<OrderViewHolder>() {
 
     private val orders = mutableListOf<Order>()
     private val products = mutableListOf<Product>()
     private val contacts = mutableListOf<Contact>()
 
-    var listener: ContactEventListener? = null
-
-//    private var selectedItemViewHolder: ContactViewHolder? = null
-//    private var selectedContact: Contact? = null
+    var listener: OrderEventListener? = null
 
     fun setOrders(orders: List<Order>) {
         this.orders.clear()
@@ -51,16 +48,13 @@ class OrderAdapter: RecyclerView.Adapter<OrderViewHolder>() {
         holder.bindProduct(products[position])
         holder.bindContact(contacts[position])
 
-
-        if (listener == null) return
-
         listener?.let {
-            holder.itemView.setOnClickListener {
-                listener?.onContactClick(order.id)
+            holder.itemView.setOnLongClickListener {
+                listener?.onOrderLongPress(order.id)
+                return@setOnLongClickListener true
             }
         }
     }
 
     override fun getItemCount(): Int = orders.count()
-
 }
