@@ -30,6 +30,7 @@ class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListe
             container,
             false
         )
+        binding.toolbar.settings.setOnClickListener { showSettingsFragment() }
         return binding.root
     }
 
@@ -66,5 +67,9 @@ class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListe
 
     override fun onOrderLongPress(id: Long?) {
         findNavController().navigate(R.id.action_holderFragment_to_orderDetailsFragment, createBundle("orderId", id!!))
+    }
+
+    private fun showSettingsFragment() {
+        findNavController().navigate(R.id.action_holderFragment_to_settingsFragment)
     }
 }

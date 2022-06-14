@@ -19,15 +19,17 @@ import java.time.format.DateTimeFormatter
 
 
 class NotificationController(
-    private val orderRepository: OrderRepository
+    private val orderRepository: OrderRepository,
+    private val preferenceManager: PreferenceManager
 ) : ViewModel() {
 
     val orders = orderRepository.getAllOrders()
+    private var oldOrders = mutableListOf<Order>()
 
     private fun observeOrders() {
         viewModelScope.launch {
             orderRepository.getAllOrders().asFlow().collect {
-                if (notificationsAllowed)
+                if (preferenceManager.retrieveNotificationsAllowance())
                     pushNotificationForEachDeliveryThatIsSetForToday(it)
             }
         }
@@ -83,28 +85,27 @@ class NotificationController(
         return current.format(formatter)
     }
 
+    private fun filteredOrdersThatDidNotYetPushNotification(orders: List<Order>): List<Order> {
+        val tempOrders = orders as MutableList
+        tempOrders.removeAll(oldOrders)
+        oldOrders.clear()
+        oldOrders.addAll(orders)
+        return tempOrders
+    }
+
     private fun pushNotificationForEachDeliveryThatIsSetForToday(orders: List<Order>) {
         val todayDate = getCurrentDate()
-        for (order in orders) {
+        for (order in filteredOrdersThatDidNotYetPushNotification(orders)) {
             if (todayDate == order.deliveryDate) {
                 pushNotification(createNotification(order))
             }
         }
     }
 
-    fun allowNotifications() {
-        notificationsAllowed = true
-    }
-
-    fun disableNotifications() {
-        notificationsAllowed = false
-    }
-
     companion object {
         const val CHANNEL_ID = "channelId"
         const val CHANNEL_NAME = "channelName"
         private var notificationId = 0
-        private var notificationsAllowed = true
 
         private lateinit var context: Context
 
@@ -113,12 +114,13 @@ class NotificationController(
 
         fun getController(
             context: Context,
-            orderRepository: OrderRepository
+            orderRepository: OrderRepository,
+            preferenceManager: PreferenceManager
         ): NotificationController {
             Companion.context = context
             if (INSTANCE == null) {
                 synchronized(this) {
-                    INSTANCE = NotificationController(orderRepository)
+                    INSTANCE = NotificationController(orderRepository, preferenceManager)
                 }
             }
             return INSTANCE!!

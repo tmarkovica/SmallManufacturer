@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_holderFragment_to_orderDetailsFragment"
             app:destination="@id/orderDetailsFragment" />
+        <action
+            android:id="@+id/action_holderFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -111,6 +114,14 @@
         android:label="OrderDetailsFragment" >
         <action
             android:id="@+id/action_orderDetailsFragment_to_holderFragment"
+            app:destination="@id/holderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_holderFragment"
             app:destination="@id/holderFragment" />
     </fragment>
 </navigation>

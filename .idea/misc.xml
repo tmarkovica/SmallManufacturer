@@ -6,7 +6,7 @@
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/drawable/btn2selector.xml" value="0.2615" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/drawable/data_button_select_state.xml" value="0.2615" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/drawable/rfwe.xml" value="0.196" />
-        <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/activity_main.xml" value="0.2463768115942029" />
+        <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/fragment_contacts.xml" value="0.21603260869565216" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/fragment_create_contact.xml" value="0.27807971014492755" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/fragment_create_order.xml" value="0.27807971014492755" />
@@ -21,12 +21,16 @@
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/fragment_products.xml" value="0.21603260869565216" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/fragment_select_contact.xml" value="0.29270833333333335" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/fragment_select_product.xml" value="0.2640625" />
+        <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/fragment_settings.xml" value="0.25885416666666666" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/item_contact.xml" value="0.29270833333333335" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/item_feature.xml" value="0.28541666666666665" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/item_feature_checkbox.xml" value="0.29846014492753625" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/item_order.xml" value="0.29846014492753625" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/item_product.xml" value="0.33" />
         <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/layout_product_info.xml" value="0.23697916666666666" />
+        <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/menu.xml" value="0.30344202898550726" />
+        <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/layout/toolbar.xml" value="0.33" />
+        <entry key="..\:/Android_repos/SmallManufacturer/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

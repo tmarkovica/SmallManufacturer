@@ -3,7 +3,8 @@
     package="hr.ferit.tomislavmarkovica.smallmanufacturer">
 
     <!-- Camera -->
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="false" />
 
     <application

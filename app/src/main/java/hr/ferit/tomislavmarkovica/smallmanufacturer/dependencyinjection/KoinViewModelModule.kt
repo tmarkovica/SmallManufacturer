@@ -32,7 +32,6 @@ val viewModelModule = module {
             get<ProductRepository>()
         )
     }
-    viewModel { SaveOrderViewModel(get<OrderRepository>()) }
+//    viewModel { SaveOrderViewModel(get<OrderRepository>()) }
     viewModel { OrderedFeatureViewModel(get<OrderedFeatureRepository>()) }
-//    viewModel { OrderNotificationViewModel(get<NotificationController>(), get<OrderRepository>()) }
 }

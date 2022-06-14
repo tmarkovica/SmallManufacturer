@@ -19,17 +19,17 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Feature
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Order
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.FeatureProductRelationViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.OrderedFeatureViewModel
-import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SaveOrderViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.OrdersViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SharedCotactAndProductViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.creation.FeatureEventListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.format.DateTimeFormatter
 
-class CreateOrderFragment: Fragment(), FeatureEventListener {
+class CreateOrderFragment : Fragment(), FeatureEventListener {
 
-    private val viewModelSaveOrder: SaveOrderViewModel by viewModel()
+    private val viewModelSaveOrder: OrdersViewModel by viewModel()
 
-    private val sharedCotactAndProductViewModel: SharedCotactAndProductViewModel by activityViewModels()
+    private val sharedContactAndProductViewModel: SharedCotactAndProductViewModel by activityViewModels()
 
     private val viewModelFeatureProductRelation: FeatureProductRelationViewModel by viewModel()
 
@@ -60,33 +60,35 @@ class CreateOrderFragment: Fragment(), FeatureEventListener {
     }
 
     private fun bindProduct() {
-        sharedCotactAndProductViewModel.product.observe(viewLifecycleOwner) {
+        sharedContactAndProductViewModel.product.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.layoutItemProduct.textViewProductName.text = it.name
                 binding.layoutItemProduct.textViewProductDescription.text = it.description
                 binding.layoutItemProduct.imageViewProductImage.setImageBitmap(it.photo)
 
-//                bindFeatures(it.id)
                 viewModelFeatureProductRelation.setProductId(it.id)
-            }
-            else {
+            } else {
                 binding.layoutItemProduct.textViewProductName.text = ""
                 binding.layoutItemProduct.textViewProductDescription.text = ""
-                binding.layoutItemProduct.imageViewProductImage.setImageBitmap(BitmapFactory.decodeResource(resources, R.drawable.factory_256) as Bitmap)
+                binding.layoutItemProduct.imageViewProductImage.setImageBitmap(
+                    BitmapFactory.decodeResource(
+                        resources,
+                        R.drawable.factory_256
+                    ) as Bitmap
+                )
             }
         }
     }
 
     private fun bindContact() {
-        sharedCotactAndProductViewModel.contact.observe(viewLifecycleOwner) {
+        sharedContactAndProductViewModel.contact.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.layoutItemContact.textViewFirstName.text = it.firstName
                 binding.layoutItemContact.textViewLastName.text = it.lastName
                 binding.layoutItemContact.textViewEmail.text = it.email
                 binding.layoutItemContact.textViewPhoneNumber.text = it.phoneNumber
                 binding.layoutItemContact.textViewAddress.text = it.address
-            }
-            else {
+            } else {
                 binding.layoutItemContact.textViewFirstName.text = ""
                 binding.layoutItemContact.textViewLastName.text = ""
                 binding.layoutItemContact.textViewEmail.text = ""
@@ -118,15 +120,18 @@ class CreateOrderFragment: Fragment(), FeatureEventListener {
     }
 
     private fun showSelectContactFragment() {
-        Navigation.findNavController(binding.root).navigate(R.id.action_createOrderFragment_to_selectContactFragment)
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_createOrderFragment_to_selectContactFragment)
     }
 
     private fun showSelectProductFragment() {
-        Navigation.findNavController(binding.root).navigate(R.id.action_createOrderFragment_to_selectProductFragment)
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_createOrderFragment_to_selectProductFragment)
     }
 
     private fun getDateFromDatePicker(picker: DatePicker): String {
-        val current = picker.dayOfMonth.toString() + "/" + (picker.month + 1).toString() + "/" + picker.year.toString()
+        val current =
+            picker.dayOfMonth.toString() + "/" + (picker.month + 1).toString() + "/" + picker.year.toString()
         val formatter = DateTimeFormatter.ofPattern("dd/M/yyyy")
         return current.format(formatter)
     }
@@ -137,27 +142,36 @@ class CreateOrderFragment: Fragment(), FeatureEventListener {
     }
 
     private fun areProductAndContactSelected(): Boolean {
-        return sharedCotactAndProductViewModel.isContactSelected() && sharedCotactAndProductViewModel.isProductSelected()
+        return sharedContactAndProductViewModel.isContactSelected() && sharedContactAndProductViewModel.isProductSelected()
     }
 
     private fun createOrder() {
-        if (!areProductAndContactSelected()) return
+        if (!areProductAndContactSelected()) {
+            Toast.makeText(context, "Contact or product are not added", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-        val contactId = sharedCotactAndProductViewModel.contact.value!!.id
-        val productId = sharedCotactAndProductViewModel.product.value!!.id
+        val contactId = sharedContactAndProductViewModel.contact.value!!.id
+        val productId = sharedContactAndProductViewModel.product.value!!.id
 
         val orderDate = getDateFromDatePicker(binding.datePickerOrderDate)
         val deliveryDate = getDateFromDatePicker(binding.datePickerDeliveryDate)
 
 
-        val order = Order(id = 0, orderDate = orderDate, deliveryDate = deliveryDate, contactId = contactId, productId = productId)
+        val order = Order(
+            id = 0,
+            orderDate = orderDate,
+            deliveryDate = deliveryDate,
+            contactId = contactId,
+            productId = productId
+        )
         val orderId = viewModelSaveOrder.save(order)
         saveCheckedFeatures(orderId, productId)
 
         Toast.makeText(context, "Order created", Toast.LENGTH_SHORT).show()
 
-        sharedCotactAndProductViewModel.setSelectedProduct(null)
-        sharedCotactAndProductViewModel.setSelectedContact(null)
+        sharedContactAndProductViewModel.setSelectedProduct(null)
+        sharedContactAndProductViewModel.setSelectedContact(null)
         findNavController().navigateUp()
     }
 

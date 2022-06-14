@@ -1,13 +1,10 @@
 package hr.ferit.tomislavmarkovica.smallmanufacturer
 
 import android.app.Application
-import hr.ferit.tomislavmarkovica.smallmanufacturer.dependencyinjection.databaseModule
-import hr.ferit.tomislavmarkovica.smallmanufacturer.dependencyinjection.repositoryModule
-import hr.ferit.tomislavmarkovica.smallmanufacturer.dependencyinjection.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import android.util.Log
-import hr.ferit.tomislavmarkovica.smallmanufacturer.dependencyinjection.notificationController
+import hr.ferit.tomislavmarkovica.smallmanufacturer.dependencyinjection.*
 import org.koin.android.ext.android.getKoin
 
 class SmallManufacturer : Application() {
@@ -24,12 +21,12 @@ class SmallManufacturer : Application() {
                 databaseModule,
                 repositoryModule,
                 viewModelModule,
-                notificationController
+                notificationController,
+                sharedPrefers
             )
         }
 
         notificationContr = application.getKoin().get<NotificationController>()
-        notificationContr.allowNotifications()
     }
 
     companion object {

@@ -34,4 +34,8 @@ class OrdersViewModel(
             tempList.add(productRepository.getProductById(o.productId)!!)
         return tempList
     }
+
+    fun save(order: Order): Long {
+        return orderRepository.save(order)
+    }
 }
