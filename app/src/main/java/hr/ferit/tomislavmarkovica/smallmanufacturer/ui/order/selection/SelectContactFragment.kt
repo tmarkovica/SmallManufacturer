@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.tomislavmarkovica.smallmanufacturer.databinding.FragmentSelectContactBinding
 import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Contact
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.ContactsViewModel
-import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SharedCotactAndProductViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SharedContactAndProductViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.adapter.ContactEventListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,7 +21,7 @@ class SelectContactFragment: Fragment(), ContactEventListener {
     private lateinit var binding: FragmentSelectContactBinding
     private val viewModel: ContactsViewModel by viewModel()
 
-    private val sharedCotactAndProductViewModel: SharedCotactAndProductViewModel by activityViewModels()
+    private val sharedContactAndProductViewModel: SharedContactAndProductViewModel by activityViewModels()
 
     private lateinit var adapter: ContactSelectionAdapter
 
@@ -71,7 +71,7 @@ class SelectContactFragment: Fragment(), ContactEventListener {
     private fun confirmSelectedContact() {
         val contact: Contact = adapter.getSelectedContact() ?: return
         Toast.makeText(context, "Contact selected", Toast.LENGTH_SHORT).show()
-        sharedCotactAndProductViewModel.setSelectedContact(contact)
+        sharedContactAndProductViewModel.setSelectedContact(contact)
         findNavController().navigateUp()
     }
 }

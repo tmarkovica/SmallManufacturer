@@ -12,7 +12,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.listing.ContactsF
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.navigationcontrols.TabButtonClickListener
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.details.OrderEventListener
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.listing.OrdersFragment
-import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductListTabFragment
+import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductsFragment
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductLongPressListener
 
 
@@ -37,7 +37,7 @@ class HolderFragment : Fragment(), TabButtonClickListener, ProductLongPressListe
     private fun getFragmentForButtonClicked(position: Int) : Fragment {
         return when (position) {
                 0 -> {
-                ProductListTabFragment()
+                ProductsFragment()
             }
                 1 -> {
                 OrdersFragment()

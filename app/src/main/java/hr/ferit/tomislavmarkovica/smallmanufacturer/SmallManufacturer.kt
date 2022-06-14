@@ -9,7 +9,7 @@ import org.koin.android.ext.android.getKoin
 
 class SmallManufacturer : Application() {
 
-    private lateinit var notificationContr: NotificationController
+    private lateinit var notificationControl: NotificationController
 
     override fun onCreate() {
         super.onCreate()
@@ -26,7 +26,7 @@ class SmallManufacturer : Application() {
             )
         }
 
-        notificationContr = application.getKoin().get<NotificationController>()
+        notificationControl = application.getKoin().get()
     }
 
     companion object {

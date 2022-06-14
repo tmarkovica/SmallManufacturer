@@ -5,7 +5,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.PreferenceManager
 import org.koin.dsl.module
 
 val sharedPrefers = module {
-    single<PreferenceManager>() { PreferenceManager(get<Context>()) }
+    single<PreferenceManager> { PreferenceManager(get<Context>()) }
 }
 
 

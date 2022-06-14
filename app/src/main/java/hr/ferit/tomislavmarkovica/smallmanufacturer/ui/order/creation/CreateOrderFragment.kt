@@ -20,7 +20,7 @@ import hr.ferit.tomislavmarkovica.smallmanufacturer.model.Order
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.FeatureProductRelationViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.OrderedFeatureViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.OrdersViewModel
-import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SharedCotactAndProductViewModel
+import hr.ferit.tomislavmarkovica.smallmanufacturer.presentation.SharedContactAndProductViewModel
 import hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.creation.FeatureEventListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.format.DateTimeFormatter
@@ -29,7 +29,7 @@ class CreateOrderFragment : Fragment(), FeatureEventListener {
 
     private val viewModelSaveOrder: OrdersViewModel by viewModel()
 
-    private val sharedContactAndProductViewModel: SharedCotactAndProductViewModel by activityViewModels()
+    private val sharedContactAndProductViewModel: SharedContactAndProductViewModel by activityViewModels()
 
     private val viewModelFeatureProductRelation: FeatureProductRelationViewModel by viewModel()
 

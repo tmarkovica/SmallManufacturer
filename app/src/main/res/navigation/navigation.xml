@@ -5,7 +5,6 @@
     android:id="@+id/navigation"
     app:startDestination="@id/holderFragment">
 
-
     <fragment
         android:id="@+id/productCreationFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.creation.ProductCreationFragment"
@@ -51,21 +50,24 @@
 
     <fragment
         android:id="@+id/productListTabFragment"
-        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductListTabFragment"
+        android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.listing.ProductsFragment"
         android:label="fragment_products"
         tools:layout="@layout/fragment_products" />
     <fragment
         android:id="@+id/ordersFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.listing.OrdersFragment"
-        android:label="OrdersFragment" />
+        android:label="OrdersFragment"
+        tools:layout="@layout/fragment_orders"/>
     <fragment
         android:id="@+id/contactsFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.listing.ContactsFragment"
-        android:label="ContactsFragment" />
+        android:label="ContactsFragment"
+        tools:layout="@layout/fragment_contacts"/>
     <fragment
         android:id="@+id/productFeaturesEditFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.product.featuresedit.ProductFeaturesEditFragment"
-        android:label="ProductFeaturesEditFragment" >
+        android:label="ProductFeaturesEditFragment"
+        tools:layout="@layout/fragment_details_product">
         <action
             android:id="@+id/action_productFeaturesEditFragment_to_holderFragment"
             app:destination="@id/holderFragment" />
@@ -73,7 +75,8 @@
     <fragment
         android:id="@+id/createOrderFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.creation.CreateOrderFragment"
-        android:label="CreateOrderFragment" >
+        android:label="CreateOrderFragment"
+        tools:layout="@layout/fragment_create_order">
         <action
             android:id="@+id/action_createOrderFragment_to_holderFragment"
             app:destination="@id/holderFragment" />
@@ -87,7 +90,8 @@
     <fragment
         android:id="@+id/createContactFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.contact.creation.CreateContactFragment"
-        android:label="CreateContactFragment" >
+        android:label="CreateContactFragment"
+        tools:layout="@layout/fragment_create_contact">
         <action
             android:id="@+id/action_createContactFragment_to_holderFragment"
             app:destination="@id/holderFragment" />
@@ -95,7 +99,8 @@
     <fragment
         android:id="@+id/selectContactFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.selection.SelectContactFragment"
-        android:label="SelectContactFragment" >
+        android:label="SelectContactFragment"
+        tools:layout="@layout/fragment_select_contact">
         <action
             android:id="@+id/action_selectContactFragment_to_createOrderFragment"
             app:destination="@id/createOrderFragment" />
@@ -103,7 +108,8 @@
     <fragment
         android:id="@+id/selectProductFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.selection.SelectProductFragment"
-        android:label="SelectProductFragment" >
+        android:label="SelectProductFragment"
+        tools:layout="@layout/fragment_select_product">
         <action
             android:id="@+id/action_selectProductFragment_to_createOrderFragment"
             app:destination="@id/createOrderFragment" />
@@ -111,7 +117,8 @@
     <fragment
         android:id="@+id/orderDetailsFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.order.details.OrderDetailsFragment"
-        android:label="OrderDetailsFragment" >
+        android:label="OrderDetailsFragment"
+        tools:layout="@layout/fragment_details_order">
         <action
             android:id="@+id/action_orderDetailsFragment_to_holderFragment"
             app:destination="@id/holderFragment" />
@@ -119,7 +126,8 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="hr.ferit.tomislavmarkovica.smallmanufacturer.ui.settings.SettingsFragment"
-        android:label="SettingsFragment" >
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_holderFragment"
             app:destination="@id/holderFragment" />

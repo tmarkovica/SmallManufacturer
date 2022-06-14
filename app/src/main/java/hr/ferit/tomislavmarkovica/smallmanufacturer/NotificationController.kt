@@ -87,7 +87,7 @@ class NotificationController(
 
     private fun filteredOrdersThatDidNotYetPushNotification(orders: List<Order>): List<Order> {
         val tempOrders = orders as MutableList
-        tempOrders.removeAll(oldOrders)
+        tempOrders.removeAll(oldOrders.toSet())
         oldOrders.clear()
         oldOrders.addAll(orders)
         return tempOrders
